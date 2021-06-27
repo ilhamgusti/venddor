@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInvoicesTable extends Migration
+class CreateRemarksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateInvoicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('invoices', function (Blueprint $table) {
+        Schema::create('remarks', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_invoice');
-            $table->integer('total_tagihan');
-            $table->tinyInteger('status');
+            $table->text('remarks');
+            $table->integer('remarkable_id');
+
+            $table->string("remarkable_type");
             $table->timestamps();
 
-            $table->unsignedBigInteger('proyek_id')->index();
-            $table->foreign('proyek_id')->references('id')->on('proyek');
+            $table->unsignedBigInteger('user_id')->index();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -32,6 +33,6 @@ class CreateInvoicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoices');
+        Schema::dropIfExists('remarks');
     }
 }

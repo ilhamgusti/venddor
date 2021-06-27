@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
-Route::get('/logout', 'MetricaController@logout');
 
 // Render perticular view file by foldername and filename and all passed in only one controller at a time
 Route::get('{folder}/{file}', 'MetricaController@indexWithOneFolder');
@@ -22,12 +21,21 @@ Route::get('{folder}/{file}', 'MetricaController@indexWithOneFolder');
 // Render when Route Have 2 folder
 Route::get('{folder1}/{folder2}/{file}', 'MetricaController@indexWithTwoFolder');
 
-// when render first time project redirect
-Route::get('/home', 'HomeController@index');
 
 // when render first time project redirect
-Route::get('/', function () {
-    return redirect('login');
+Route::redirect('/', '/login');
+
+
+
+Route::middleware(['auth:web'])->group(function (){
+    Route::get('/logout', 'MetricaController@logout');
+    // when render first time project redirect
+    Route::get('/home', 'HomeController@index');
+    Route::resources([
+        'vendor' => VendorController::class,
+        'tahapan' => TahapanController::class,
+        'proyek' => ProyekController::class,
+        'kontrak' => KontrakController::class,
+        'invoice' => InvoiceController::class,
+    ]);
 });
-
-
