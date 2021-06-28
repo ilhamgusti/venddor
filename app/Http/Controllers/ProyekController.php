@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Transformers\ProyekTransformer;
 use App\Models\Proyek;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ProyekController extends Controller
 {
@@ -25,7 +29,7 @@ class ProyekController extends Controller
      */
     public function create()
     {
-        //
+        return view('web.proyek.create');
     }
 
     /**
@@ -36,7 +40,17 @@ class ProyekController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $proyek = ProyekTransformer::toInstance($request->validated());
+            $proyek->save();
+            DB::commit();
+        } catch (Exception $ex) {
+            Log::info($ex->getMessage());
+            DB::rollBack();
+            return response()->json($ex->getMessage(), 409);
+        }
+        return redirect()->route('proyek.index')->with('success','Success Data berhasil di simpan');
     }
 
     /**
@@ -47,8 +61,6 @@ class ProyekController extends Controller
      */
     public function show(Proyek $proyek)
     {
-        // return $proyek;
-        dump($proyek->toArray());
         return view('web.proyek.detail', ['data'=>$proyek]);
     }
 

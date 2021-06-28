@@ -23,6 +23,10 @@ class CreateKontraksTable extends Migration
             $table->text('remarks_direktur')->nullable();
             $table->tinyInteger('status');
             $table->timestamps();
+
+
+            $table->unsignedBigInteger('proyek_id')->index();
+            $table->foreign('proyek_id')->references('id')->on('proyek');
         });
     }
 

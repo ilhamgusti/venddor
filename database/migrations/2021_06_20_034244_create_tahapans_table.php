@@ -15,9 +15,9 @@ class CreateTahapansTable extends Migration
     {
         Schema::create('tahapan', function (Blueprint $table) {
             $table->id();
+            $table->string('label');
             $table->string('file_url');
             $table->string('keterangan');
-            $table->string('isian');
             $table->tinyInteger('status');
             $table->timestamps();
 

@@ -25,8 +25,8 @@ class CreateProyeksTable extends Migration
             $table->unsignedBigInteger('vendor_id')->index()->nullable();
             $table->foreign('vendor_id')->references('id')->on('vendors');
 
-            $table->unsignedBigInteger('kontrak_id')->nullable()->index();
-            $table->foreign('kontrak_id')->references('id')->on('kontrak');
+            // $table->unsignedBigInteger('kontrak_id')->nullable()->index();
+            // $table->foreign('kontrak_id')->references('id')->on('kontrak');
         });
     }
 

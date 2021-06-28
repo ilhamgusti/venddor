@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
 {
+
+    // protected $table = 'invoice';
+
     public function proyek()
     {
         return $this->belongsTo(Proyek::class,'proyek_id','id');

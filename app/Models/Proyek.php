@@ -14,7 +14,6 @@ class Proyek extends Model
         return $this->belongsTo(Vendor::class,'vendor_id','id');
     }
 
-
     /**
      * Get the contract record associated with the proyek.
      */

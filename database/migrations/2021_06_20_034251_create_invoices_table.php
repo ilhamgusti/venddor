@@ -16,6 +16,7 @@ class CreateInvoicesTable extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->string('kode_invoice');
+            $table->string('file_url');
             $table->integer('total_tagihan');
             $table->tinyInteger('status');
             $table->timestamps();

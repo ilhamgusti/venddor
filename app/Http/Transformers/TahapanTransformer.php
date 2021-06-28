@@ -15,14 +15,14 @@ class TahapanTransformer
 
         foreach ($input as $key => $value) {
             switch ($key) {
-                case "kode_invoice":
-                    $data["kode_invoice"] = $value;
-                    break;
-                case "total_tagihan":
-                    $data["total_tagihan"] = $value;
+                case "label":
+                    $data["label"] = $value;
                     break;
                 case "file_url":
                     $data["file_url"] = $value;
+                    break;
+                case "keterangan":
+                    $data["keterangan"] = $value;
                     break;
                 case "status":
                     $data["status"] = $value;
