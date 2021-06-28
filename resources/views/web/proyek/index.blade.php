@@ -13,19 +13,7 @@
                     <a href="javascript: void(0);" >
                         <i data-feather="monitor" class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
                         <span>Dashboard</span>
-                        {{-- <span class="menu-arrow">
-                            <i class="mdi mdi-chevron-right"></i>
-                        </span> --}}
                     </a>
-                    {{-- <ul class="nav-second-level" aria-expanded="false">
-                        <li class="nav-item"><a class="nav-link" href="/vertical-2/analytics-index"><i class="ti-control-record"></i>Analytics</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/vertical-2/crypto-index"><i class="ti-control-record"></i>Crypto</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/vertical-2/crm-index"><i class="ti-control-record"></i>CRM</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/vertical-2/projects-index"><i class="ti-control-record"></i>Project</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/vertical-2/ecommerce-index"><i class="ti-control-record"></i>Ecommerce</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/vertical-2/helpdesk-index"><i class="ti-control-record"></i>Helpdesk</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/vertical-2/hospital-index"><i class="ti-control-record"></i>Hospital</a></li> 
-                    </ul> --}}
                 </li>
 @stop
 
@@ -35,9 +23,9 @@
                     <div class="row">
                         <div class="col-sm-12">
                              @component('common-components.breadcrumb')
-                                 @slot('title') List Vendor @endslot
+                                 @slot('title') Proyek @endslot
                                  @slot('item1') Home @endslot
-                                 @slot('item2')  @endslot
+                                 {{-- @slot('item2')  @endslot --}}
                                  @endcomponent
 
                         </div><!--end col-->
@@ -50,17 +38,21 @@
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                         <tr>
-                                            <th>Nama</th>
-                                            <th>Kode Vendor</th>
-                                            <th>Alamat</th>
+                                            <th>Nama Proyek</th>
+                                            <th>Tanggal Pengerjaan</th>
+                                            <th>Estimasi</th>
+                                            <th>File Timesheet</th>
+                                            <th>Status</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                             @forelse ($data as $item)
                                             <tr>
-                                                <td>{{$item->nama}}</td>
-                                                <td>{{$item->kode_vendor}}</td>
-                                                <td>{{$item->alamat}}</td>
+                                                <td>{{$item->nama_proyek}}</td>
+                                                <td>{{$item->tanggal_pengerjaan}}</td>
+                                                <td>{{$item->estimasi}}</td>
+                                                <td>{{$item->file_url}}</td>
+                                                <td>{{$item->status}}</td>
                                             </tr>
                                             @empty
                                                 

@@ -14,7 +14,9 @@ class VendorController extends Controller
      */
     public function index()
     {
-        //
+
+        $data = Vendor::all();
+        return view('web.vendor.index', compact('data'));
     }
 
     /**

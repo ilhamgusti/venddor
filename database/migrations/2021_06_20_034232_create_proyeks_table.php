@@ -18,11 +18,11 @@ class CreateProyeksTable extends Migration
             $table->string('nama_proyek');
             $table->date('tanggal_pengerjaan');
             $table->integer('estimasi');
-            $table->string('url_file_timesheet');
+            $table->string('file_url');
             $table->tinyInteger('status');
             $table->timestamps();
 
-            $table->unsignedBigInteger('vendor_id')->index();
+            $table->unsignedBigInteger('vendor_id')->index()->nullable();
             $table->foreign('vendor_id')->references('id')->on('vendors');
 
             $table->unsignedBigInteger('kontrak_id')->nullable()->index();

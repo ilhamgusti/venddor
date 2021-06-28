@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Proyek extends Model
 {
+
+    protected $table = 'proyek';
+    
     public function vendor()
     {
         return $this->belongsTo(Vendor::class,'vendor_id','id');

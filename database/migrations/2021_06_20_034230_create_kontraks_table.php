@@ -16,7 +16,7 @@ class CreateKontraksTable extends Migration
         Schema::create('kontrak', function (Blueprint $table) {
             $table->id();
             $table->date('tanggal_kontrak');
-            $table->string('url_surat_kontrak');
+            $table->string('file_url');
             $table->text('remarks_cu')->nullable();
             $table->text('remarks_spv')->nullable();
             $table->text('remarks_manager')->nullable();

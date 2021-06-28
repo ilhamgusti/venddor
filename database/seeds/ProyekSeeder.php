@@ -11,6 +11,6 @@ class ProyekSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Models\Proyek::class,50)->create();
     }
 }

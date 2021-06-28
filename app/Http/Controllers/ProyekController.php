@@ -14,7 +14,8 @@ class ProyekController extends Controller
      */
     public function index()
     {
-        //
+        $data = Proyek::all();
+        return view('web.proyek.index', compact('data'));
     }
 
     /**
@@ -46,7 +47,9 @@ class ProyekController extends Controller
      */
     public function show(Proyek $proyek)
     {
-        //
+        // return $proyek;
+        dump($proyek->toArray());
+        return view('web.proyek.detail', ['data'=>$proyek]);
     }
 
     /**
