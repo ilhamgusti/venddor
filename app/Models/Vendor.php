@@ -11,4 +11,8 @@ class Vendor extends Model
     {
         return $this->belongsTo(User::class,'user_id','id');
     }
+
+    public function proyek(){
+        return $this->hasMany(Proyek::class,'proyek_id','id');
+    }
 }

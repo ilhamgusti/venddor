@@ -6,7 +6,10 @@ use App\Models\Proyek;
 
 class ProyekTransformer
 {
-
+    public static function getModel($data = null)
+    {
+        return Proyek::findOrFail($data);
+    }
     public static function toInstance(array $input, $data = null)
     {
         if (empty($data)) {

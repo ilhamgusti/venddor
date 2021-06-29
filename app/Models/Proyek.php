@@ -19,6 +19,20 @@ class Proyek extends Model
      */
     public function kontrak()
     {
-        return $this->hasOne(Kontrak::class,'kontrak_id','id');
+        return $this->hasOne(Kontrak::class,'proyek_id','id');
+    }
+
+    public function invoice(){
+        return $this->hasOne(Invoice::class,'proyek_id','id');
+    }
+
+    public function tahapan()
+    {
+        return $this->hasMany(Tahapan::class, 'proyek_id','id');
+    }
+
+    public function remarks()
+    {
+        return $this->morphMany(Remarks::class,'remarkable');
     }
 }

@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Remarks extends Model
 {
-    //
+    public function remarkable()
+    {
+        return $this->morphTo();
+    }
 }

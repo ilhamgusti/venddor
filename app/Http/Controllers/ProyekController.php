@@ -46,9 +46,13 @@ class ProyekController extends Controller
         DB::beginTransaction();
         try {
             $proyek = ProyekTransformer::toInstance($request->validated());
-            $proyek->status = 0;
+            $proyek->status = 1;
             $proyek->file_url = URL::asset('storage/' . $request->file_url->store('documents_timeline', 'public'));
             $proyek->save();
+
+            $vendor = Vendor::findOrFail($request->vendor_id);
+            
+            $proyek->vendor()->associate($vendor)->save();
             DB::commit();
         } catch (Exception $ex) {
             Log::info($ex->getMessage());
@@ -72,7 +76,7 @@ class ProyekController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Proyek  $proyek
+     * @param  \App\Modezzzzzzzls\Proyek  $proyek
      * @return \Illuminate\Http\Response
      */
     public function edit(Proyek $proyek)
@@ -93,6 +97,32 @@ class ProyekController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Proyek  $proyek
+     * @return \Illuminate\Http\Response
+     */
+    public function updateStatus(Request $request, Proyek $proyek)
+    {
+        
+         // dd($request);
+        DB::beginTransaction();
+        try {
+            $proyek = ProyekTransformer::getModel($request->proyek_id);
+            
+            $proyek->status = $this->setStatusByAuthLogin($request->approval);
+            $proyek->save();
+            DB::commit();
+        } catch (Exception $ex) {
+            Log::info($ex->getMessage());
+            DB::rollBack();
+            return response()->json($ex->getMessage(), 409);
+        }
+        return redirect()->route('proyek.index')->with('success','Success Data berhasil di simpan');
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Proyek  $proyek
@@ -101,5 +131,13 @@ class ProyekController extends Controller
     public function destroy(Proyek $proyek)
     {
         //
+    }
+
+
+
+    private function setStatusByAuthLogin($status = true){
+
+        if($status) return \Auth::user()->role;
+        return 99;
     }
 }

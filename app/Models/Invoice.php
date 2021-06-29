@@ -13,4 +13,10 @@ class Invoice extends Model
     {
         return $this->belongsTo(Proyek::class,'proyek_id','id');
     }
+
+    public function remarks()
+    {
+        return $this->morphMany(Remarks::class,'remarkable');
+    }
+
 }

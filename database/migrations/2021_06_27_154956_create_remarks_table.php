@@ -16,8 +16,8 @@ class CreateRemarksTable extends Migration
         Schema::create('remarks', function (Blueprint $table) {
             $table->id();
             $table->text('remarks');
+            $table->string('status');
             $table->integer('remarkable_id');
-
             $table->string("remarkable_type");
             $table->timestamps();
 
