@@ -19,8 +19,8 @@
                         <img src="{{ URL::asset('assets/images/users/user-9.jpg')}}" alt="" class="thumb-md rounded-circle"> 
                     </div>                                                         
                     <div class="media-body align-self-center text-truncate ml-3">                        
-                        <h5 class="mt-0 mb-1 font-weight-semibold">Hyman M. Cross</h5>   
-                        <p class="text-uppercase mb-0 font-12">Admin</p>                                         
+                        <h5 class="mt-0 mb-1 font-weight-semibold">{{Auth::user()->vendor->name ?? Auth::user()->name}}</h5>   
+                        <p class="text-uppercase mb-0 font-12">{{Auth::user()->role}}</p>                                         
                     </div><!--end media-body-->
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 @yield('sidebarPortion')
                
                 <li class="leftbar-menu-item">
-                    <a href="javascript: void(0);" class="menu-link">
+                    <a href="/home" class="menu-link">
                         <i data-feather="grid" class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
                         <span>Dashboard</span>
                         <span class="menu-arrow">
@@ -39,7 +39,7 @@
                     </a>
                 </li>                   
                 <li class="leftbar-menu-item">
-                    <a href="javascript: void(0);" class="menu-link">
+                    <a href="{{route('vendor.index')}}" class="menu-link">
                         <i data-feather="grid" class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
                         <span>List Vendor</span>
                         <span class="menu-arrow">
@@ -48,7 +48,7 @@
                     </a>
                 </li>                   
                 <li class="leftbar-menu-item">
-                    <a href="javascript: void(0);" class="menu-link">
+                    <a href="{{route('proyek.index')}}" class="menu-link">
                         <i data-feather="grid" class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
                         <span>List Proyek</span>
                         <span class="menu-arrow">
@@ -57,7 +57,7 @@
                     </a>
                 </li>                   
                 <li class="leftbar-menu-item">
-                    <a href="javascript: void(0);" class="menu-link">
+                    <a href="{{route('kontrak.index')}}" class="menu-link">
                         <i data-feather="grid" class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
                         <span>List Kontrak</span>
                         <span class="menu-arrow">
@@ -66,7 +66,7 @@
                     </a>
                 </li>                   
                 <li class="leftbar-menu-item">
-                    <a href="javascript: void(0);" class="menu-link">
+                    <a href="{{route('invoice.index')}}" class="menu-link">
                         <i data-feather="grid" class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
                         <span>List Invoice</span>
                         <span class="menu-arrow">

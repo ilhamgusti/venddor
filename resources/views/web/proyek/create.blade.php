@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                              @component('common-components.breadcrumb')
-                                 @slot('title') Proyek @endslot
+                                 @slot('title') Create Proyek @endslot
                                  @slot('item1') Home @endslot
                                  {{-- @slot('item2')  @endslot --}}
                                  @endcomponent

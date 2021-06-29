@@ -7,17 +7,12 @@
                         <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                             aria-haspopup="false" aria-expanded="false">
                             <img src="{{ URL::asset('assets/images/users/user-4.jpg')}}" alt="profile-user" class="rounded-circle" /> 
-                            <span class="ml-1 nav-user-name hidden-sm">Amelia <i class="mdi mdi-chevron-down"></i> </span>
+                            <span class="ml-1 nav-user-name hidden-sm">{{Auth::user()->vendor->name ?? Auth::user()->name}} <i class="mdi mdi-chevron-down"></i> </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="/logout"><i class="dripicons-exit text-muted mr-2"></i> Logout</a>
                         </div>
                     </li>
-                    {{-- <li class="mr-2">
-                        <a href="#" class="nav-link" data-toggle="modal" data-animation="fade" data-target=".modal-rightbar">
-                            <i data-feather="align-right" class="align-self-center"></i>
-                        </a>                  
-                    </li> --}}
                 </ul><!--end topbar-nav-->
     
                 <ul class="list-unstyled topbar-nav mb-0">  

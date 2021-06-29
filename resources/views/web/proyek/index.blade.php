@@ -43,6 +43,7 @@
                                             <th>Estimasi</th>
                                             <th>File Timesheet</th>
                                             <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -50,9 +51,10 @@
                                             <tr>
                                                 <td>{{$item->nama_proyek}}</td>
                                                 <td>{{$item->tanggal_pengerjaan}}</td>
-                                                <td>{{$item->estimasi}}</td>
-                                                <td>{{$item->file_url}}</td>
+                                                <td>{{$item->estimasi}} Hari</td>
+                                                <td><a class="btn btn-outline-light btn-xs shadow-none" href={{$item->file_url}}><i class="mdi mdi-file mr-2"></i>File</a></td>
                                                 <td>{{$item->status}}</td>
+                                                <td><a class="btn btn-primary waves-effect waves-light shadow-none" href={{route('proyek.show',['proyek'=> $item->id])}}>Detail</a></td>
                                             </tr>
                                             @empty
                                                 

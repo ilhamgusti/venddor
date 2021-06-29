@@ -28,7 +28,7 @@ class StoreProyekRequest extends FormRequest
             'tanggal_pengerjaan'=>'required|date',
             'estimasi'=>'required|integer',
             'file_url'=>'required|file|mimes:xlsx,pdf,jpeg,jpg,png,xls,doc,docx',
-            'status'=>'required|integer',
+            // 'status'=>'required|integer',
             'vendor_id'=>'sometimes|required|integer',
         ];
     }

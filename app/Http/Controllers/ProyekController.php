@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProyekRequest;
 use App\Http\Transformers\ProyekTransformer;
 use App\Models\Proyek;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\URL;
 
 class ProyekController extends Controller
 {
@@ -38,11 +40,14 @@ class ProyekController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProyekRequest $request)
     {
+        // dd($request);
         DB::beginTransaction();
         try {
             $proyek = ProyekTransformer::toInstance($request->validated());
+            $proyek->status = 0;
+            $proyek->file_url = URL::asset('storage/' . $request->file_url->store('documents_timeline', 'public'));
             $proyek->save();
             DB::commit();
         } catch (Exception $ex) {
