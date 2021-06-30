@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProyekRequest;
 use App\Http\Transformers\ProyekTransformer;
 use App\Models\Proyek;
+use App\Models\Vendor;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +32,8 @@ class ProyekController extends Controller
      */
     public function create()
     {
-        return view('web.proyek.create');
+        $vendors = Vendor::all();
+        return view('web.proyek.create', compact('vendors'));
     }
 
     /**

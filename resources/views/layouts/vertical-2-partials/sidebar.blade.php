@@ -2,16 +2,16 @@
       <div class="left-sidenav">
           <!-- LOGO -->
           <div class="topbar-left">
-              <a href="/analytics/analytics-index" class="logo">
+              <a href="/home" class="logo">
                   <span>
                       <img src="{{ URL::asset('assets/images/logo-sm.png') }}" alt="logo-small" class="logo-sm">
                   </span>
-                  <span>
+                  {{-- <span>
                       <img src="{{ URL::asset('assets/images/logo.png') }}" alt="logo-large"
                           class="logo-lg logo-light">
                       <img src="{{ URL::asset('assets/images/logo-dark.png') }}" alt="logo-large"
                           class="logo-lg logo-dark">
-                  </span>
+                  </span> --}}
               </a>
           </div>
           <!--end logo-->
@@ -25,7 +25,7 @@
                       <h5 class="mt-0 mb-1 font-weight-semibold">
                           {{ Auth::user()->vendor->name ?? Auth::user()->name }}
                       </h5>
-                      <p class="text-uppercase mb-0 font-12">{{ Auth::user()->role }}</p>
+                      <p class="text-uppercase mb-0 font-12">{{ transformRole(Auth::user()->role) }}</p>
                   </div>
                   <!--end media-body-->
               </div>

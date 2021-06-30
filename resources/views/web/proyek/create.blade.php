@@ -75,7 +75,18 @@
                                                 <div class="col-sm-10">
                                                     <div class="custom-file"><input class="custom-file-input" type="file" value="{{--$data->file_url--}}" name="file_url" id="timeline"><label class="custom-file-label shadow-none border-none">{{--$data->file_url--}} Choose File Timeline</label></div>
                                                 </div>
-                                            </div>                          
+                                            </div>    
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label text-right">Select Vendor</label>
+                                                <div class="col-sm-10">
+                                                    <select class="form-control">
+                                                        <option>Select</option>
+                                                        @foreach ($vendors as $vendor)
+                                                            <option value="{{$vendor->id}}">{{$vendor->nama}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>   
                                     <div class="float-right">

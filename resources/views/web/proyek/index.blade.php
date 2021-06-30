@@ -24,12 +24,12 @@
             <!--end col-->
         </div>
         <!-- end page title end breadcrumb -->
-        <div>
-            <a href="{{ route('proyek.create') }}" class="btn btn-primary shadow-none  waves-effect waves-light"><i
-                    class="mdi mdi-plus mr-2"></i>Create
-                Proyek</a>
-        </div>
         <div class="row">
+            <div class="pb-4 w-100 mr-4">
+                <a href="{{ route('proyek.create') }}" class="btn btn-primary float-right shadow-none  waves-effect waves-light "><i
+                        class="mdi mdi-plus mr-2"></i>Create
+                    Proyek</a>
+            </div>
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
@@ -53,7 +53,7 @@
                                         <td>{{ $item->estimasi }} Hari</td>
                                         <td><a class="btn btn-outline-light btn-xs shadow-none"
                                                 href={{ $item->file_url }}><i class="mdi mdi-file mr-2"></i>File</a></td>
-                                        <td>{{ $item->status }}</td>
+                                        <td>{!! transformStatusToComponent($item->status) !!}</td>
                                         <td><a class="btn btn-primary waves-effect waves-light shadow-none"
                                                 href={{ route('proyek.show', ['proyek' => $item->id]) }}>Detail</a></td>
                                     </tr>
