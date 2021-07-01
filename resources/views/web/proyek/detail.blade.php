@@ -295,7 +295,7 @@
                         <h4 class="mt-0 header-title">Kontrak</h4>
 
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-sm-2 col-form-label text-right">Text</label>
                                     <div class="col-sm-10">
@@ -384,84 +384,6 @@
                                     <div class="col-sm-10">
                                         <input class="form-control form-control-sm" type="text"
                                             placeholder=".form-control-sm" id="example-text-input-sm">
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-lg-6">
-                                <div class="form-group row">
-                                    <label for="example-search-input"
-                                        class="col-sm-2 col-form-label text-right">Search</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" type="search" value="How do I shoot web"
-                                            id="example-search-input">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-url-input" class="col-sm-2 col-form-label text-right">URL</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" type="url" value="https://getbootstrap.com"
-                                            id="example-url-input">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-date-input" class="col-sm-2 col-form-label text-right">Date</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-month-input"
-                                        class="col-sm-2 col-form-label text-right">Month</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" type="month" value="2011-08" id="example-month-input">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-week-input" class="col-sm-2 col-form-label text-right">Week</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" type="week" value="2011-W33" id="example-week-input">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-time-input" class="col-sm-2 col-form-label text-right">Time</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" type="time" value="13:45:00" id="example-time-input">
-                                    </div>
-                                </div>
-                                <div class="form-group row has-success">
-                                    <label for="inputHorizontalSuccess"
-                                        class="col-sm-2 col-form-label text-right">Email</label>
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control form-control-success"
-                                            id="inputHorizontalSuccess" placeholder="name@example.com">
-                                        <div class="form-control-feedback">Success! You've done it.</div>
-                                        <small class="form-text text-muted">Example help text that remains
-                                            unchanged.</small>
-                                    </div>
-                                </div>
-                                <div class="form-group row has-warning">
-                                    <label for="inputHorizontalWarning"
-                                        class="col-sm-2 col-form-label text-right">Email</label>
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control form-control-warning"
-                                            id="inputHorizontalWarning" placeholder="name@example.com">
-                                        <div class="form-control-feedback">Shucks, check the formatting of that and try
-                                            again.</div>
-                                        <small class="form-text text-muted">Example help text that remains
-                                            unchanged.</small>
-                                    </div>
-                                </div>
-                                <div class="form-group row has-error">
-                                    <label for="inputHorizontalDnger"
-                                        class="col-sm-2 col-form-label text-right">Email</label>
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control form-control-danger"
-                                            id="inputHorizontalDnger" placeholder="name@example.com">
-                                        <div class="form-control-feedback">Sorry, that username's taken. Try another?</div>
-                                        <small class="form-text text-muted">Example help text that remains
-                                            unchanged.</small>
                                     </div>
                                 </div>
                             </div>
@@ -481,7 +403,7 @@
                         <h4 class="mt-0 header-title">Tahapan</h4>
 
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-sm-2 col-form-label text-right">Text</label>
                                     <div class="col-sm-10">
@@ -570,84 +492,6 @@
                                     <div class="col-sm-10">
                                         <input class="form-control form-control-sm" type="text"
                                             placeholder=".form-control-sm" id="example-text-input-sm">
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-lg-6">
-                                <div class="form-group row">
-                                    <label for="example-search-input"
-                                        class="col-sm-2 col-form-label text-right">Search</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" type="search" value="How do I shoot web"
-                                            id="example-search-input">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-url-input" class="col-sm-2 col-form-label text-right">URL</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" type="url" value="https://getbootstrap.com"
-                                            id="example-url-input">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-date-input" class="col-sm-2 col-form-label text-right">Date</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-month-input"
-                                        class="col-sm-2 col-form-label text-right">Month</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" type="month" value="2011-08" id="example-month-input">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-week-input" class="col-sm-2 col-form-label text-right">Week</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" type="week" value="2011-W33" id="example-week-input">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-time-input" class="col-sm-2 col-form-label text-right">Time</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" type="time" value="13:45:00" id="example-time-input">
-                                    </div>
-                                </div>
-                                <div class="form-group row has-success">
-                                    <label for="inputHorizontalSuccess"
-                                        class="col-sm-2 col-form-label text-right">Email</label>
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control form-control-success"
-                                            id="inputHorizontalSuccess" placeholder="name@example.com">
-                                        <div class="form-control-feedback">Success! You've done it.</div>
-                                        <small class="form-text text-muted">Example help text that remains
-                                            unchanged.</small>
-                                    </div>
-                                </div>
-                                <div class="form-group row has-warning">
-                                    <label for="inputHorizontalWarning"
-                                        class="col-sm-2 col-form-label text-right">Email</label>
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control form-control-warning"
-                                            id="inputHorizontalWarning" placeholder="name@example.com">
-                                        <div class="form-control-feedback">Shucks, check the formatting of that and try
-                                            again.</div>
-                                        <small class="form-text text-muted">Example help text that remains
-                                            unchanged.</small>
-                                    </div>
-                                </div>
-                                <div class="form-group row has-error">
-                                    <label for="inputHorizontalDnger"
-                                        class="col-sm-2 col-form-label text-right">Email</label>
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control form-control-danger"
-                                            id="inputHorizontalDnger" placeholder="name@example.com">
-                                        <div class="form-control-feedback">Sorry, that username's taken. Try another?</div>
-                                        <small class="form-text text-muted">Example help text that remains
-                                            unchanged.</small>
                                     </div>
                                 </div>
                             </div>
@@ -668,7 +512,8 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group row">
-                                    <label for="example-text-input" class="col-sm-2 col-form-label text-right">Invoice</label>
+                                    <label for="example-text-input"
+                                        class="col-sm-2 col-form-label text-right">Invoice</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" type="text" value="Artisanal kale"
                                             id="example-text-input">

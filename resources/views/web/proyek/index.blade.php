@@ -25,11 +25,14 @@
         </div>
         <!-- end page title end breadcrumb -->
         <div class="row">
-            <div class="pb-4 w-100 mr-4">
-                <a href="{{ route('proyek.create') }}" class="btn btn-primary float-right shadow-none  waves-effect waves-light "><i
-                        class="mdi mdi-plus mr-2"></i>Create
-                    Proyek</a>
-            </div>
+            @canany(['isControlUnit'])
+                <div class="pb-4 w-100 mr-4">
+                    <a href="{{ route('proyek.create') }}"
+                        class="btn btn-primary float-right shadow-none  waves-effect waves-light "><i
+                            class="mdi mdi-plus mr-2"></i>Create
+                        Proyek</a>
+                </div>
+            @endcanany
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
