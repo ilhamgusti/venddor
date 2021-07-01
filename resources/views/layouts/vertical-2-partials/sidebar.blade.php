@@ -114,24 +114,36 @@
                       </a>
                   </li>
               @endcanany
-              @canany(['isControlUnit', 'isKeuangan'])
+              @canany(['isControlUnit', 'isSPV', 'isManager', 'isDirektur'])
                   <li class="leftbar-menu-item">
                       <a href="javascript: void(0);" class="menu-link">
                           <i data-feather="check-square"
                               class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
-                          <span>Approval. Invoice</span>
+                          <span>Approval. Kontrak</span>
                           <span class="menu-arrow">
                               <i class="mdi mdi-chevron-right"></i>
                           </span>
                       </a>
                   </li>
               @endcanany
-              @canany(['isControlUnit'])
+              {{-- @canany(['isControlUnit'])
                   <li class="leftbar-menu-item">
                       <a href="javascript: void(0);" class="menu-link">
                           <i data-feather="check-square"
                               class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
                           <span>Approval. Tahapan</span>
+                          <span class="menu-arrow">
+                              <i class="mdi mdi-chevron-right"></i>
+                          </span>
+                      </a>
+                  </li>
+              @endcanany --}}
+              @canany(['isControlUnit', 'isKeuangan', 'isSPV', 'isManager', 'isDirektur'])
+                  <li class="leftbar-menu-item">
+                      <a href="javascript: void(0);" class="menu-link">
+                          <i data-feather="check-square"
+                              class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
+                          <span>Approval. Invoice</span>
                           <span class="menu-arrow">
                               <i class="mdi mdi-chevron-right"></i>
                           </span>
