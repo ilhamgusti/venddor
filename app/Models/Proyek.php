@@ -3,10 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Traits\Filter;
+use App\QueryFilters\Status;
 class Proyek extends Model
 {
 
+    use Filter;
+
+     protected function getFilters()
+    {
+        return [
+            Status::class,
+        ];
+    }
     protected $table = 'proyek';
     
     public function vendor()

@@ -99,7 +99,7 @@ function transformStatusToComponent($status) {
         case 1:
             return '<span class="badge badge-outline-danger">
                         <i class="fa fa-circle text-danger mr-1"></i>
-                        Checking Control Unit
+                        Checking SPV Proyek
                     </span>';
         case 2:
             return '<span class="badge badge-outline-primary">

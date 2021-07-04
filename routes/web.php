@@ -28,7 +28,7 @@ Route::redirect('/', '/login');
 
 
 Route::group([
-    'middleware' => 'web'
+    'middleware' => 'auth:web'
 ],function (){
     Route::get('/logout', 'MetricaController@logout');
     // when render first time project redirect
@@ -40,4 +40,5 @@ Route::group([
         'kontrak' => KontrakController::class,
         'invoice' => InvoiceController::class,
     ]);
+    Route::put('/proyek/update-status/{proyek}', 'ProyekController@updateStatus')->name('proyek.update-status');
 });

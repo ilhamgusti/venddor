@@ -8,14 +8,6 @@
     <!-- Responsive datatable examples -->
     <link href="{{ URL::asset('plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 @stop
-@section('sidebarPortion')
-    <li class="leftbar-menu-item">
-        <a href="javascript: void(0);">
-            <i data-feather="monitor" class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
-            <span>Dashboard</span>
-        </a>
-    </li>
-@stop
 
 @section('content')
     <div class="container-fluid">
@@ -45,37 +37,38 @@
                                     <label for="example-text-input" class="col-sm-2 col-form-label text-right">Nama
                                         Proyek</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="text" value="{{ $data->nama_proyek }}"
-                                            id="example-text-input">
+                                        <input disabled class="form-control disabled" type="text"
+                                            value="{{ $data->nama_proyek }}" id="example-text-input">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="example-text-input"
+                                        class="col-sm-2 col-form-label text-right">Status</label>
+                                    <div class="col-sm-10">
+                                        {!! transformStatusToComponent($data->status) !!}
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="example-email-input" class="col-sm-2 col-form-label text-right">Tanggal
                                         Pengerjaan</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="date" value="{{ $data->tanggal_pengerjaan }}"
-                                            id="example-email-input">
+                                        <input disabled class="form-control disabled" type="date"
+                                            value="{{ $data->tanggal_pengerjaan }}" id="example-email-input">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="estimasi" class="col-sm-2 col-form-label text-right">Estimasi</label>
                                     <div class="col-sm-10">
                                         <div class="input-group">
-                                            <input id="estimasi" type="number" value="{{ $data->estimasi }}"
-                                                class="form-control" placeholder="Estimasi hari" aria-label="Estimasi...">
+                                            <input disabled id="estimasi" type="number" value="{{ $data->estimasi }}"
+                                                class="form-control disabled" placeholder="Estimasi hari"
+                                                aria-label="Estimasi...">
                                             <span class="input-group-append">
                                                 <button disabled
                                                     class=" disabled btn btn-sm btn-secondary pointer-event-none shadow-none"
                                                     type="button">Hari</button>
                                             </span>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row d-none">
-                                    <label for="example-password-input"
-                                        class="col-sm-2 col-form-label text-right">Status</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" type="text" value="hunter2" id="example-password-input">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -86,12 +79,57 @@
                                             Timeline</a>
                                     </div>
                                 </div>
+                                <form method="post" action="{{ route('proyek.update-status', ['proyek' => $data->id]) }}">
+                                    @csrf
+                                    @method('PUT')
+                                    @if ($latestRemarks->status !== Auth::user()->role && $data->status !== Auth::user()->role && $data->status < Auth::user()->role)
+                                        <div class="form-group row">
+                                            <label for="example-text-input"
+                                                class="col-sm-2 col-form-label text-right">Remarks</label>
+                                            <div class="col-sm-10">
+                                                <textarea class="form-control" name="remarks" type="text"
+                                                    id="example-text-input"></textarea>
+                                            </div>
+                                        </div>
                             </div>
                         </div>
-                        {{-- <div class="float-right">
-                            <button type="submit" class="btn btn-success waves-effect waves-light shadow-none">Save</button>
-                            <button class="btn btn-error waves-effect waves-light shadow-none">Cancel</button>
-                        </div> --}}
+                        <div class="float-right" x-data="{status:{{ Auth::user()->role }}}">
+                            <input type="hidden" name="status" x-bind:value="status">
+                            <button type="submit" x-on:mouseenter="status = {{ Auth::user()->role }}"
+                                x-on:focus="status = {{ Auth::user()->role }}"
+                                class="btn btn-success waves-effect waves-light shadow-none">Approve</button>
+                            <button type="submit" x-on:mouseenter="status = 99" x-on:focus="status = 99"
+                                class="btn btn-danger waves-effect waves-light shadow-none">Reject</button>
+                        </div>
+                    @else
+
+                        @endif
+
+                        </form>
+                        <br>
+                        <hr>
+                        <table class="table table-bordered mb-0 table-centered">
+                            <thead>
+                                <tr>
+                                    <th>Remarks</th>
+                                    <th>Date</th>
+                                    <th>By</th>
+                                    {{-- <th>Status</th> --}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($data->remarks as $remarks)
+                                    <tr>
+                                        <td>{{ $remarks->remarks }}</td>
+                                        <td>{{ $remarks->created_at }}</td>
+                                        <td>{{ $remarks->user->name }}</td>
+                                        {{-- <td>{{ $remarks->status }}<span class="badge badge-soft-success">Approved</span> --}}
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
                     </div>
                     <!--end card-body-->
                     {{-- </form> --}}

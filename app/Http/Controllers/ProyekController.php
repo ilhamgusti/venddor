@@ -6,6 +6,7 @@ use App\Http\Requests\StoreProyekRequest;
 use App\Http\Transformers\ProyekTransformer;
 use App\Models\Proyek;
 use App\Models\Vendor;
+use App\Models\Remarks;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,7 @@ class ProyekController extends Controller
      */
     public function index()
     {
-        $data = Proyek::all();
+        $data = Proyek::filter()->get();
         return view('web.proyek.index', compact('data'));
     }
 
@@ -55,6 +56,14 @@ class ProyekController extends Controller
             $vendor = Vendor::findOrFail($request->vendor_id);
             
             $proyek->vendor()->associate($vendor)->save();
+
+            $remarks = new Remarks;
+            $remarks->remarks = $request->remarks;
+            $remarks->status = 1;
+            $remarks->user_id = \Auth::user()->id;
+
+            $proyek->remarks()->save($remarks);
+
             DB::commit();
         } catch (Exception $ex) {
             Log::info($ex->getMessage());
@@ -72,7 +81,9 @@ class ProyekController extends Controller
      */
     public function show(Proyek $proyek)
     {
-        return view('web.proyek.detail', ['data'=>$proyek]);
+
+        $latestRemarks = $proyek->remarks->first();
+        return view('web.proyek.detail', ['data'=>$proyek, 'latestRemarks'=> $latestRemarks]);
     }
 
     /**
@@ -108,13 +119,19 @@ class ProyekController extends Controller
     public function updateStatus(Request $request, Proyek $proyek)
     {
         
-         // dd($request);
         DB::beginTransaction();
         try {
-            $proyek = ProyekTransformer::getModel($request->proyek_id);
+            // $proyek = ProyekTransformer::getModel($request->proyek_id);
             
-            $proyek->status = $this->setStatusByAuthLogin($request->approval);
+            $proyek->status = $request->status;
             $proyek->save();
+
+            $remarks = new Remarks;
+            $remarks->remarks = $request->remarks;
+            $remarks->status = $request->status;
+            $remarks->user_id = \Auth::user()->id;
+
+            $proyek->remarks()->save($remarks);
             DB::commit();
         } catch (Exception $ex) {
             Log::info($ex->getMessage());

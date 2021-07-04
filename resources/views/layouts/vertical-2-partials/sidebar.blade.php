@@ -79,7 +79,7 @@
               @endcanany
               @canany(['isSPV'])
                   <li class="leftbar-menu-item">
-                      <a href="javascript: void(0);" class="menu-link">
+                      <a href="{{ route('proyek.index', ['status' => 1]) }}" class="menu-link">
                           <i data-feather="check-square"
                               class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
                           <span>Approval SPV Proyek</span>
@@ -92,7 +92,7 @@
 
               @canany(['isManager'])
                   <li class="leftbar-menu-item">
-                      <a href="javascript: void(0);" class="menu-link">
+                      <a href="{{ route('proyek.index', ['status' => 2]) }}" class="menu-link">
                           <i data-feather="check-square"
                               class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
                           <span>App. Manager Proyek</span>
@@ -104,7 +104,7 @@
               @endcanany
               @canany(['isDirektur'])
                   <li class="leftbar-menu-item">
-                      <a href="javascript: void(0);" class="menu-link">
+                      <a href="{{ route('proyek.index', ['status' => 3]) }}" class="menu-link">
                           <i data-feather="check-square"
                               class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
                           <span>App. Direktur Proyek</span>
