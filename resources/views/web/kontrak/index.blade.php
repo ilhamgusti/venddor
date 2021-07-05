@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-sm-12">
                 @component('common-components.breadcrumb')
-                    @slot('title') Proyek @endslot
+                    @slot('title') Kontrak @endslot
                     @slot('item1') Home @endslot
                     {{-- @slot('item2')  @endslot --}}
                 @endcomponent
@@ -24,11 +24,11 @@
             <!--end col-->
         </div>
         <!-- end page title end breadcrumb -->
-        <div>
+        {{-- <div>
             <a href="{{ route('proyek.create') }}" class="btn btn-primary shadow-none  waves-effect waves-light"><i
                     class="mdi mdi-plus mr-2"></i>Create
                 Proyek</a>
-        </div>
+        </div> --}}
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -37,10 +37,8 @@
                             style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                                 <tr>
-                                    <th>Nama Proyek</th>
-                                    <th>Tanggal Pengerjaan</th>
-                                    <th>Estimasi</th>
-                                    <th>File Timesheet</th>
+                                    <th>Tanggal Kontrak</th>
+                                    <th>File Kontrak</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -48,14 +46,12 @@
                             <tbody>
                                 @forelse ($data as $item)
                                     <tr>
-                                        <td>{{ $item->nama_proyek }}</td>
-                                        <td>{{ $item->tanggal_pengerjaan }}</td>
-                                        <td>{{ $item->estimasi }} Hari</td>
+                                        <td>{{ $item->tanggal_kontrak }}</td>
                                         <td><a class="btn btn-outline-light btn-xs shadow-none"
                                                 href={{ $item->file_url }}><i class="mdi mdi-file mr-2"></i>File</a></td>
                                         <td>{{ $item->status }}</td>
                                         <td><a class="btn btn-primary waves-effect waves-light shadow-none"
-                                                href={{ route('proyek.show', ['proyek' => $item->id]) }}>Detail</a></td>
+                                                href={{ route('kontrak.show', ['kontrak' => $item->id]) }}>Detail</a></td>
                                     </tr>
                                 @empty
 

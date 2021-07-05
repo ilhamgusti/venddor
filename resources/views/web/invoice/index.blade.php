@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-sm-12">
                 @component('common-components.breadcrumb')
-                    @slot('title') Proyek @endslot
+                    @slot('title') Invoice @endslot
                     @slot('item1') Home @endslot
                     {{-- @slot('item2')  @endslot --}}
                 @endcomponent
@@ -24,11 +24,7 @@
             <!--end col-->
         </div>
         <!-- end page title end breadcrumb -->
-        <div>
-            <a href="{{ route('proyek.create') }}" class="btn btn-primary shadow-none  waves-effect waves-light"><i
-                    class="mdi mdi-plus mr-2"></i>Create
-                Proyek</a>
-        </div>
+
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -41,7 +37,7 @@
                                     <th>File Invoice</th>
                                     <th>Total Tagihan</th>
                                     <th>Status</th>
-                                    {{-- <th>Action</th> --}}
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,8 +50,8 @@
                                         </td>
                                         <td>{{ $item->total_tagihan }}</td>
                                         <td>{{ $item->status }}</td>
-                                        {{-- <td><a class="btn btn-primary waves-effect waves-light shadow-none"
-                                                href={{ route('proyek.show', ['proyek' => $item->id]) }}>Detail</a></td> --}}
+                                        <td><a class="btn btn-primary waves-effect waves-light shadow-none"
+                                                href={{ route('invoice.show', ['invoice' => $item->id]) }}>Detail</a></td>
                                     </tr>
                                 @empty
 
