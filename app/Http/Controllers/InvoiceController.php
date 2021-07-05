@@ -15,7 +15,7 @@ class InvoiceController extends Controller
     public function index()
     {
         $data = Invoice::filter()->get();
-        return view('web.proyek.index', compact('data'));
+        return view('web.invoice.index', compact('data'));
     }
 
     /**
