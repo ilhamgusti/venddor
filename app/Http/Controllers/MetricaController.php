@@ -32,9 +32,5 @@ class MetricaController extends Controller
     	// Render perticular view file by foldername and filename
         return view('analytics/analytics-index'); 
     }
-    public function logout()
-    {
-        Auth::logout(); 
-        return redirect()->route('login');
-    }
+
 }

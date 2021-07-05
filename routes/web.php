@@ -30,7 +30,7 @@ Route::redirect('/', '/login');
 Route::group([
     'middleware' => 'auth:web'
 ],function (){
-    Route::get('/logout', 'MetricaController@logout');
+    Route::get('/logout', 'HomeController@logout');
     // when render first time project redirect
     Route::get('/home', 'HomeController@index');
     Route::resources([
