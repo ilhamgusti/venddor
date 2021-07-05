@@ -14,7 +14,8 @@ class KontrakController extends Controller
      */
     public function index()
     {
-        //
+        $data = Kontrak::filter()->get();
+        return view('web.proyek.index', compact('data'));
     }
 
     /**

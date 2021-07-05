@@ -37,25 +37,25 @@
                             style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                                 <tr>
-                                    <th>Nama Proyek</th>
-                                    <th>Tanggal Pengerjaan</th>
-                                    <th>Estimasi</th>
-                                    <th>File Timesheet</th>
+                                    <th>Kode Invoice</th>
+                                    <th>File Invoice</th>
+                                    <th>Total Tagihan</th>
                                     <th>Status</th>
-                                    <th>Action</th>
+                                    {{-- <th>Action</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($data as $item)
                                     <tr>
-                                        <td>{{ $item->nama_proyek }}</td>
-                                        <td>{{ $item->tanggal_pengerjaan }}</td>
-                                        <td>{{ $item->estimasi }} Hari</td>
-                                        <td><a class="btn btn-outline-light btn-xs shadow-none"
-                                                href={{ $item->file_url }}><i class="mdi mdi-file mr-2"></i>File</a></td>
+                                        <td>{{ $item->kode_invoice }}</td>
+                                        <td>
+                                            <a class="btn btn-outline-light btn-xs shadow-none"
+                                                href={{ $item->file_url }}><i class="mdi mdi-file mr-2"></i>File</a>
+                                        </td>
+                                        <td>{{ $item->total_tagihan }}</td>
                                         <td>{{ $item->status }}</td>
-                                        <td><a class="btn btn-primary waves-effect waves-light shadow-none"
-                                                href={{ route('proyek.show', ['proyek' => $item->id]) }}>Detail</a></td>
+                                        {{-- <td><a class="btn btn-primary waves-effect waves-light shadow-none"
+                                                href={{ route('proyek.show', ['proyek' => $item->id]) }}>Detail</a></td> --}}
                                     </tr>
                                 @empty
 

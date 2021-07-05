@@ -17,10 +17,6 @@ class CreateKontraksTable extends Migration
             $table->id();
             $table->date('tanggal_kontrak');
             $table->string('file_url');
-            $table->text('remarks_cu')->nullable();
-            $table->text('remarks_spv')->nullable();
-            $table->text('remarks_manager')->nullable();
-            $table->text('remarks_direktur')->nullable();
             $table->tinyInteger('status');
             $table->timestamps();
 
