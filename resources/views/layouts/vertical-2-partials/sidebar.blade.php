@@ -116,7 +116,7 @@
               @endcanany
               @canany(['isControlUnit', 'isSPV', 'isManager', 'isDirektur'])
                   <li class="leftbar-menu-item">
-                      <a href="javascript: void(0);" class="menu-link">
+                      <a href="{{ route('kontrak.index', ['status' => Auth::user()->role - 1 ]) }}" class="menu-link">
                           <i data-feather="check-square"
                               class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
                           <span>Approval. Kontrak</span>

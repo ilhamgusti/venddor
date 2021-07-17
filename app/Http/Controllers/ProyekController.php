@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProyekRequest;
 use App\Http\Transformers\ProyekTransformer;
+use App\Models\Kontrak;
 use App\Models\Proyek;
 use App\Models\Vendor;
 use App\Models\Remarks;
@@ -54,7 +55,7 @@ class ProyekController extends Controller
             $proyek->save();
 
             $vendor = Vendor::findOrFail($request->vendor_id);
-            
+
             $proyek->vendor()->associate($vendor)->save();
 
             $remarks = new Remarks;
@@ -65,12 +66,13 @@ class ProyekController extends Controller
             $proyek->remarks()->save($remarks);
 
             DB::commit();
+            return redirect()->route('proyek.index')->with('success','Success Data berhasil di simpan');
+
         } catch (Exception $ex) {
             Log::info($ex->getMessage());
             DB::rollBack();
             return response()->json($ex->getMessage(), 409);
         }
-        return redirect()->route('proyek.index')->with('success','Success Data berhasil di simpan');
     }
 
     /**
@@ -118,11 +120,10 @@ class ProyekController extends Controller
      */
     public function updateStatus(Request $request, Proyek $proyek)
     {
-        
         DB::beginTransaction();
         try {
             // $proyek = ProyekTransformer::getModel($request->proyek_id);
-            
+
             $proyek->status = $request->status;
             $proyek->save();
 
@@ -130,15 +131,25 @@ class ProyekController extends Controller
             $remarks->remarks = $request->remarks;
             $remarks->status = $request->status;
             $remarks->user_id = \Auth::user()->id;
-
             $proyek->remarks()->save($remarks);
+
+            if($request->status == 5) {
+                $Kontrak = new Kontrak;
+                $Kontrak->tanggal_kontrak = date('Y-m-d');
+                $Kontrak->file_url = '';
+                $Kontrak->status = 0;
+                $Kontrak->created_at = date('Y-m-d');
+                $Kontrak->proyek_id = $proyek->id;
+                $Kontrak->save();
+            }
+
             DB::commit();
         } catch (Exception $ex) {
             Log::info($ex->getMessage());
             DB::rollBack();
             return response()->json($ex->getMessage(), 409);
         }
-        return redirect()->route('proyek.index')->with('success','Success Data berhasil di simpan');
+        return redirect()->route('kontrak.index')->with('success','Success Data berhasil di simpan');
     }
 
     /**
