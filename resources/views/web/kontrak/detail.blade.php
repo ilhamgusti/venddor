@@ -147,10 +147,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="float-right" x-data="{status:0}">
+                        <div class="float-right" x-data="{status:4}">
                             <input type="hidden" name="status" x-bind:value="status">
-                            <button type="submit" x-on:mouseenter="status = 0"
-                                x-on:focus="status = 0"
+                            <button type="submit" x-on:mouseenter="status = 4"
+                                x-on:focus="status = 4"
                                 class="btn btn-success waves-effect waves-light shadow-none">Save</button>
                             <button class="btn btn-error waves-effect waves-light shadow-none">Cancel</button>
                         </div>

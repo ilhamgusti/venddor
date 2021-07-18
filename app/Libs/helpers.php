@@ -47,18 +47,20 @@ function transformProyekStatus($status) {
 }
 function transformKontrakStatus($status) {
     switch ($status) {
+        case -1:
+            return 'Upload Kontrak';
+        case 0:
+            return 'Checking Control Unit';
         case 1:
-            return 'Melakukan Permintaan Barang';
+            return 'Checking SPV';
         case 2:
-            return 'Barang Sudah Dikirim';
+            return 'Checking Manager';
         case 3:
-            return 'Barang Tidak Tersedia';
+            return 'Checking Direktur';
         case 4:
-            return 'Barang Terkonfirmasi';
-        case 4:
-            return 'Barang Terkonfirmasi Sebagian';
+            return 'Bisa Buat Tahapan';
         default:
-            return 'Unknown Status';
+            return 'Unknown';
     }
 }
 function transformTahapanStatus($status) {
@@ -92,6 +94,14 @@ function transformInvoiceStatus($status) {
         default:
             return 'Unknown Status';
     }
+}
+
+function getProyekName($proyek_id) {
+    return "x".$proyek_id;
+}
+
+function getProyekDate($proyek_id) {
+    return "x".$proyek_id;
 }
 
 function transformStatusToComponent($status) {

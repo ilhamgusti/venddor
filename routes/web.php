@@ -42,4 +42,5 @@ Route::group([
     ]);
     Route::put('/proyek/update-status/{proyek}', 'ProyekController@updateStatus')->name('proyek.update-status');
     Route::put('/kontrak/update-status/{kontrak}', 'KontrakController@updateStatus')->name('kontrak.update-status');
+    Route::put('/tahapan/update-status/{tahapan}', 'TahapanController@updateStatus')->name('tahapan.update-status');
 });

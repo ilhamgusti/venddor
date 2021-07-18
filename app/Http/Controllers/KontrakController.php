@@ -94,6 +94,11 @@ class KontrakController extends Controller
         DB::beginTransaction();
         try {
             $new_status = $request->status;
+            if ($new_status == 5) {
+                $new_status = 0; // vendor lempar ke control unit
+            } else if ($new_status == 4) {
+                $new_status = 90; // kontrak done
+            }
             error_log('newStatus '.$new_status);
 
             if (isset($request->file_url)) {
@@ -110,16 +115,6 @@ class KontrakController extends Controller
                 $remarks->status = $new_status;
                 $remarks->user_id = \Auth::user()->id;
                 $proyek->remarks()->save($remarks);
-            }
-
-            if($request->status == 4) {
-                $Tahapan = new Tahapan;
-                // $Kontrak->tanggal_kontrak = date('Y-m-d');
-                $Kontrak->file_url = '';
-                $Kontrak->status = 0;
-                $Kontrak->created_at = date('Y-m-d');
-                $Kontrak->proyek_id = $proyek->id;
-                $Kontrak->save();
             }
 
             DB::commit();
