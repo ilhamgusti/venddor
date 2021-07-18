@@ -54,7 +54,7 @@ class CreateProyekTest extends TestCase
     public function  test_user_dapat_update_status_sebuah_proyek_existing()
     {
 
-        
+
         $this->assertTrue(true);
     }
     /**

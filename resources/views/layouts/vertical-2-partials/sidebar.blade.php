@@ -116,7 +116,7 @@
               @endcanany
               @canany(['isControlUnit', 'isSPV', 'isManager', 'isDirektur'])
                   <li class="leftbar-menu-item">
-                      <a href="javascript: void(0);" class="menu-link">
+                      <a href="{{ route('kontrak.index', ['status' => Auth::user()->role - 1 ]) }}" class="menu-link">
                           <i data-feather="check-square"
                               class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
                           <span>Approval. Kontrak</span>
@@ -126,18 +126,30 @@
                       </a>
                   </li>
               @endcanany
-              {{-- @canany(['isControlUnit'])
+              @canany(['isControlUnit'])
                   <li class="leftbar-menu-item">
-                      <a href="javascript: void(0);" class="menu-link">
+                      <a href="{{ route('tahapan.index', ['status' => 90 ]) }}" class="menu-link">
                           <i data-feather="check-square"
                               class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
-                          <span>Approval. Tahapan</span>
+                          <span>Tahapan</span>
                           <span class="menu-arrow">
                               <i class="mdi mdi-chevron-right"></i>
                           </span>
                       </a>
                   </li>
-              @endcanany --}}
+              @endcanany
+              @canany(['isVendor'])
+                  <li class="leftbar-menu-item">
+                      <a href="{{ route('tahapan.index', ['status' => 91 ]) }}" class="menu-link">
+                          <i data-feather="check-square"
+                              class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
+                          <span>Tahapan & Invoice</span>
+                          <span class="menu-arrow">
+                              <i class="mdi mdi-chevron-right"></i>
+                          </span>
+                      </a>
+                  </li>
+              @endcanany
               @canany(['isControlUnit', 'isKeuangan', 'isSPV', 'isManager', 'isDirektur'])
                   <li class="leftbar-menu-item">
                       <a href="javascript: void(0);" class="menu-link">

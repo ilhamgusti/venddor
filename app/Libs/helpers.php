@@ -1,5 +1,5 @@
 <?php
-  
+
 function active_class($path, $active = 'active') {
   return call_user_func_array('Request::is', (array)$path) ? $active : '';
 }
@@ -47,18 +47,20 @@ function transformProyekStatus($status) {
 }
 function transformKontrakStatus($status) {
     switch ($status) {
+        case -1:
+            return 'Upload Kontrak';
+        case 0:
+            return 'Checking Control Unit';
         case 1:
-            return 'Melakukan Permintaan Barang';
+            return 'Checking SPV';
         case 2:
-            return 'Barang Sudah Dikirim';
+            return 'Checking Manager';
         case 3:
-            return 'Barang Tidak Tersedia';
+            return 'Checking Direktur';
         case 4:
-            return 'Barang Terkonfirmasi';
-        case 4:
-            return 'Barang Terkonfirmasi Sebagian';
+            return 'Bisa Buat Tahapan';
         default:
-            return 'Unknown Status';
+            return 'Unknown';
     }
 }
 function transformTahapanStatus($status) {
@@ -94,6 +96,14 @@ function transformInvoiceStatus($status) {
     }
 }
 
+function getProyekName($proyek_id) {
+    return "x".$proyek_id;
+}
+
+function getProyekDate($proyek_id) {
+    return "x".$proyek_id;
+}
+
 function transformStatusToComponent($status) {
     switch ($status) {
         case 1:
@@ -104,27 +114,27 @@ function transformStatusToComponent($status) {
         case 2:
             return '<span class="badge badge-outline-primary">
             <i class="fa fa-circle text-primary mr-1"></i>
-            Checking SPV Proyek
+            Checking Manager Proyek
         </span>';
         case 3:
             return '<span class="badge badge-outline-warning">
             <i class="fa fa-circle text-warning mr-1"></i>
-            Checking Manager Proyek
+            Checking Direktur Proyek
         </span>';
         case 4:
             return '<span class="badge badge-outline-secondary">
             <i class="fa fa-circle text-secondary mr-1"></i>
-            Checking Direktur Proyek
+            Checking Vendor
         </span>';
         case 5:
             return '<span class="badge badge-outline-primary">
             <i class="fa fa-circle text-primary mr-1"></i>
-            Checking Vendor
+            Submit Kontrak
         </span>';
         case 6:
             return '<span class="badge badge-outline-primary">
             <i class="fa fa-circle text-primary mr-1"></i>
-            Submit Kontrak
+            Checking Control Unit (Kontrak)
         </span>';
         case 99:
             return '<span class="badge badge-outline-dark">

@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kontrak;
+use App\Models\Proyek;
+use App\Models\Remarks;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\URL;
 
 class KontrakController extends Controller
 {
@@ -36,7 +41,7 @@ class KontrakController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       //
     }
 
     /**
@@ -47,7 +52,11 @@ class KontrakController extends Controller
      */
     public function show(Kontrak $kontrak)
     {
-        //
+        // $latestRemarks = $kontrak->remarks->first();
+
+        $proyek = Proyek::where('id', $kontrak->proyek_id)->first();
+        $latestRemarks = $proyek->remarks->first();
+        return view('web.kontrak.detail', ['data'=>$kontrak, 'proyek'=> $proyek, 'latestRemarks'=> $latestRemarks]);
     }
 
     /**
@@ -71,6 +80,50 @@ class KontrakController extends Controller
     public function update(Request $request, Kontrak $kontrak)
     {
         //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Kontrak  $kontrak
+     * @return \Illuminate\Http\Response
+     */
+    public function updateStatus(Request $request, Kontrak $kontrak)
+    {
+        DB::beginTransaction();
+        try {
+            $new_status = $request->status;
+            if ($new_status == 5) {
+                $new_status = 0; // vendor lempar ke control unit
+            } else if ($new_status == 4) {
+                $new_status = 90; // kontrak done
+            }
+            error_log('newStatus '.$new_status);
+
+            if (isset($request->file_url)) {
+                $kontrak->file_url = URL::asset('storage/' . $request->file_url->store('documents_kontrak', 'public'));
+            }
+            $kontrak->status = $new_status;
+            $kontrak->save();
+
+            if (isset($request->remarks)) {
+                error_log('remarks '.$request->remarks);
+                $proyek = Proyek::where('id', $kontrak->proyek_id)->first();
+                $remarks = new Remarks;
+                $remarks->remarks = $request->remarks;
+                $remarks->status = $new_status;
+                $remarks->user_id = \Auth::user()->id;
+                $proyek->remarks()->save($remarks);
+            }
+
+            DB::commit();
+        } catch (Exception $ex) {
+            Log::info($ex->getMessage());
+            DB::rollBack();
+            return response()->json($ex->getMessage(), 409);
+        }
+        return redirect()->route('kontrak.index')->with('success','Success Data berhasil di simpan');
     }
 
     /**
