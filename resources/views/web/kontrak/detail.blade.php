@@ -52,7 +52,7 @@
                                     <label for="example-text-input"
                                         class="col-sm-2 col-form-label text-right">Status</label>
                                     <div class="col-sm-10">
-                                        {!! transformStatusToComponent($proyek->status) !!}
+                                        {!! transformKontrakStatus($data->status) !!}
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -105,7 +105,7 @@
                         <form action="{{ route('kontrak.update-status', ['kontrak' => $data->id]) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    @if ($data->status > 0)
+                    @if ($data->status > -1)
                                 <div class="form-group row">
                                     <label for="timeline" class="col-sm-2 col-form-label text-right">File Kontrak</label>
                                     <div class="col-sm-10">

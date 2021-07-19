@@ -59,7 +59,6 @@ class TahapanController extends Controller
         $proyek = Proyek::where('id', $tahapan->proyek_id)->first();
         $tahapans = Tahapan::where('proyek_id', $tahapan->proyek_id) -> get();
         error_log($tahapans);
-        error_log($tahapans[0]->label);
         error_log($proyek);
         $latestRemarks = $proyek->remarks->first();
         return view('web.tahapan.detail', ['data'=>$tahapan, 'tahapans' => $tahapans,'proyek'=> $proyek, 'latestRemarks'=> $latestRemarks]);
@@ -123,24 +122,33 @@ class TahapanController extends Controller
             $tahapan1 = new Tahapan;
             $tahapan1->proyek_id = $tahapan->proyek_id;
             $tahapan1->label = $request->tahapan_1;
-            $tahapan1->file_url =   URL::asset('storage/' . $request->file_url_1->store('documents_kontrak', 'public'));
-            $tahapan1->keterangan = $request->keterangan_1;
+            $tahapan1->file_url = '';
+            if ($new_status == 92 && isset($request->file_url_1)) {
+                $tahapan1->file_url =   URL::asset('storage/' . $request->file_url_1->store('documents_kontrak', 'public'));
+            }
+            $tahapan1->keterangan = isset($request->keterangan_1) ? $request->keterangan_1 : '';
             $tahapan1->status = 1;
             $tahapan1->save();
 
             $tahapan2 = new Tahapan;
             $tahapan2->proyek_id = $tahapan->proyek_id;
             $tahapan2->label = $request->tahapan_2;
-            $tahapan2->file_url = URL::asset('storage/' . $request->file_url_2->store('documents_kontrak', 'public'));
-            $tahapan2->keterangan = $request->keterangan_2;
+            $tahapan2->file_url = '';
+            if ($new_status == 92 && isset($request->file_url_2)) {
+                $tahapan2->file_url = URL::asset('storage/' . $request->file_url_2->store('documents_kontrak', 'public'));
+            }
+            $tahapan2->keterangan = isset($request->keterangan_2) ? $request->keterangan_2 : '';
             $tahapan2->status = 1;
             $tahapan2->save();
 
             $tahapan3 = new Tahapan;
             $tahapan3->proyek_id = $tahapan->proyek_id;
             $tahapan3->label = $request->tahapan_3;
-            $tahapan3->file_url =  URL::asset('storage/' . $request->file_url_3->store('documents_kontrak', 'public'));
-            $tahapan3->keterangan = $request->keterangan_3;
+            $tahapan3->file_url = '';
+            if ($new_status == 92 && isset($request->file_url_3)) {
+                $tahapan3->file_url =  URL::asset('storage/' . $request->file_url_3->store('documents_kontrak', 'public'));
+            }
+            $tahapan3->keterangan = isset($request->keterangan_3) ? $request->keterangan_3 : '';
             $tahapan3->status = 1;
             $tahapan3->save();
 
@@ -152,7 +160,7 @@ class TahapanController extends Controller
                 $invoice->file_url =  URL::asset('storage/' . $request->file_invoice->store('documents_kontrak', 'public'));
                 $invoice->total_tagihan = $request->nominal;
                 $invoice->keterangan = $request->keterangan_invoice;
-                $invoice->status = 1;
+                $invoice->status = 0;
                 $invoice->save();
             }
 

@@ -34,6 +34,8 @@
                             <thead>
                                 <tr>
                                     <th>Kode Invoice</th>
+                                    <th>Nama Projek</th>
+                                    <th>Tanggal Pengerjaan/th>
                                     <th>File Invoice</th>
                                     <th>Total Tagihan</th>
                                     <th>Status</th>
@@ -44,12 +46,14 @@
                                 @forelse ($data as $item)
                                     <tr>
                                         <td>{{ $item->kode_invoice }}</td>
+                                        <td>{!! getProyekName($item->proyek_id) !!}</td>
+                                        <td>{!! getProyekDate($item->proyek_id) !!}</td>
                                         <td>
                                             <a class="btn btn-outline-light btn-xs shadow-none"
                                                 href={{ $item->file_url }}><i class="mdi mdi-file mr-2"></i>File</a>
                                         </td>
-                                        <td>{{ $item->total_tagihan }}</td>
-                                        <td>{{ $item->status }}</td>
+                                        <td>{!! toRupiah($item->total_tagihan) !!}</td>
+                                        <td>{!! transformInvoiceStatus($item->status) !!}</td>
                                         <td><a class="btn btn-primary waves-effect waves-light shadow-none"
                                                 href={{ route('invoice.show', ['invoice' => $item->id]) }}>Detail</a></td>
                                     </tr>

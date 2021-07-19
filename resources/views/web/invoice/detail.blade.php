@@ -52,7 +52,7 @@
                                     <label for="example-text-input"
                                         class="col-sm-2 col-form-label text-right">Status</label>
                                     <div class="col-sm-10">
-                                        {!! transformStatusToComponent($proyek->status) !!}
+                                        {!! transformInvoiceStatus($data->status) !!}
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -195,7 +195,7 @@
                                 <label for="estimasi" class="col-sm-2 col-form-label text-right">Nominal</label>
                                 <div class="col-sm-10">
                                     <div class="input-group">
-                                            <input disabled id="estimasi" type="number" value="{{ $data->total_tagihan }}"
+                                            <input disabled id="estimasi" type="text" value="{!! toRupiah($data->total_tagihan) !!}"
                                                 class="form-control disabled" placeholder=" "
                                                 aria-label="Estimasi...">
                                             <span class="input-group-append">

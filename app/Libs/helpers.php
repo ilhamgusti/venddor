@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Proyek;
+
 function active_class($path, $active = 'active') {
   return call_user_func_array('Request::is', (array)$path) ? $active : '';
 }
@@ -46,21 +48,88 @@ function transformProyekStatus($status) {
     }
 }
 function transformKontrakStatus($status) {
+    // switch ($status) {
+    //     case -1:
+    //         return 'Upload Kontrak';
+    //     case 0:
+    //         return 'Checking Control Unit';
+    //     case 1:
+    //         return 'Checking SPV';
+    //     case 2:
+    //         return 'Checking Manager';
+    //     case 3:
+    //         return 'Checking Direktur';
+    //     case 4:
+    //         return 'Bisa Buat Tahapan';
+    //     default:
+    //         return 'Unknown';
+    // }
     switch ($status) {
         case -1:
-            return 'Upload Kontrak';
+            return '<span class="badge badge-outline-danger">
+                        <i class="fa fa-circle text-danger mr-1"></i>
+                        Vendor Upload Kontrak
+                    </span>';
         case 0:
-            return 'Checking Control Unit';
+            return '<span class="badge badge-outline-danger">
+                        <i class="fa fa-circle text-danger mr-1"></i>
+                        Checking Control Unit
+                    </span>';
         case 1:
-            return 'Checking SPV';
+            return '<span class="badge badge-outline-danger">
+                        <i class="fa fa-circle text-danger mr-1"></i>
+                        Checking SPV Proyek
+                    </span>';
         case 2:
-            return 'Checking Manager';
+            return '<span class="badge badge-outline-primary">
+            <i class="fa fa-circle text-primary mr-1"></i>
+            Checking Manager Proyek
+        </span>';
         case 3:
-            return 'Checking Direktur';
+            return '<span class="badge badge-outline-warning">
+            <i class="fa fa-circle text-warning mr-1"></i>
+            Checking Direktur Proyek
+        </span>';
         case 4:
-            return 'Bisa Buat Tahapan';
+            return '<span class="badge badge-outline-secondary">
+            <i class="fa fa-circle text-secondary mr-1"></i>
+            Checking Vendor
+        </span>';
+        case 5:
+            return '<span class="badge badge-outline-primary">
+            <i class="fa fa-circle text-primary mr-1"></i>
+            Submit Kontrak
+        </span>';
+        case 6:
+            return '<span class="badge badge-outline-primary">
+            <i class="fa fa-circle text-primary mr-1"></i>
+            Checking Control Unit (Kontrak)
+        </span>';
+        case 90:
+            return '<span class="badge badge-outline-danger">
+                        <i class="fa fa-circle text-danger mr-1"></i>
+                        Menunggu Tahapan (Control Unit)
+                    </span>';
+        case 91:
+            return '<span class="badge badge-outline-danger">
+                        <i class="fa fa-circle text-danger mr-1"></i>
+                        Isi Tahapan & Invoice (Vendor)
+                    </span>';
+        case 92:
+            return '<span class="badge badge-outline-primary">
+            <i class="fa fa-circle text-primary mr-1"></i>
+            Checking Invoice
+        </span>';
+        case 99:
+            return '<span class="badge badge-outline-dark">
+            <i class="fa fa-circle text-dark mr-1"></i>
+            Rejected
+        </span>';
         default:
-            return 'Unknown';
+            return '<span class="badge badge-outline-dark">
+            <i class="fa fa-circle text-dark mr-1"></i>
+            Unknown
+        </span>';
     }
 }
 function transformTahapanStatus($status) {
@@ -81,27 +150,60 @@ function transformTahapanStatus($status) {
 }
 function transformInvoiceStatus($status) {
     switch ($status) {
+        case 0:
+            return '<span class="badge badge-outline-danger">
+                        <i class="fa fa-circle text-danger mr-1"></i>
+                        Waiting for Approval (Control Unit)
+                    </span>';
         case 1:
-            return 'Melakukan Permintaan Barang';
+            return '<span class="badge badge-outline-danger">
+                        <i class="fa fa-circle text-danger mr-1"></i>
+                        Waiting for Approval (SPV)
+                    </span>';
         case 2:
-            return 'Barang Sudah Dikirim';
+            return '<span class="badge badge-outline-primary">
+            <i class="fa fa-circle text-primary mr-1"></i>
+            Waiting for Approval (Manager)
+        </span>';
         case 3:
-            return 'Barang Tidak Tersedia';
+            return '<span class="badge badge-outline-warning">
+            <i class="fa fa-circle text-warning mr-1"></i>
+            Waiting for Approval (Direktur)
+        </span>';
         case 4:
-            return 'Barang Terkonfirmasi';
-        case 4:
-            return 'Barang Terkonfirmasi Sebagian';
+            return '<span class="badge badge-outline-secondary">
+            <i class="fa fa-circle text-secondary mr-1"></i>
+            Waiting for Approval (-)
+        </span>';
+        case 5:
+            return '<span class="badge badge-outline-primary">
+            <i class="fa fa-circle text-primary mr-1"></i>
+            Menunggu Bukti Bayar
+        </span>';
+        case 6:
+            return '<span class="badge badge-outline-primary">
+            <i class="fa fa-circle text-primary mr-1"></i>
+            Lunas
+        </span>';
         default:
-            return 'Unknown Status';
+            return '<span class="badge badge-outline-dark">
+            <i class="fa fa-circle text-dark mr-1"></i>
+            Unknown
+        </span>';
     }
+}
+function toRupiah($nominal) {
+    return "Rp " . number_format($nominal,2,',','.');
 }
 
 function getProyekName($proyek_id) {
-    return "x".$proyek_id;
+    $proyek = Proyek::where('id', $proyek_id)->first();
+    return $proyek->nama_proyek;
 }
 
 function getProyekDate($proyek_id) {
-    return "x".$proyek_id;
+    $proyek = Proyek::where('id', $proyek_id)->first();
+    return $proyek->tanggal_pengerjaan;
 }
 
 function transformStatusToComponent($status) {
