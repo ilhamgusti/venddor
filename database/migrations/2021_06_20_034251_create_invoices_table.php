@@ -17,8 +17,10 @@ class CreateInvoicesTable extends Migration
             $table->id();
             $table->string('kode_invoice');
             $table->string('file_url');
+            $table->string('file_bukti')->nullable();
             $table->integer('total_tagihan');
             $table->tinyInteger('status');
+            $table->text('keterangan')->nullable();
             $table->timestamps();
 
             $table->unsignedBigInteger('proyek_id')->index();
