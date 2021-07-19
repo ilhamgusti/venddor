@@ -52,7 +52,7 @@
                                     <label for="example-text-input"
                                         class="col-sm-2 col-form-label text-right">Status</label>
                                     <div class="col-sm-10">
-                                        {!! transformStatusToComponent($proyek->status) !!}
+                                        {!! transformKontrakStatus($tahapan->status) !!}
                                     </div>
                                 </div>
                                 <div class="form-group row">
