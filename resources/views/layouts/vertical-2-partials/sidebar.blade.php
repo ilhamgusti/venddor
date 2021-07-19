@@ -150,9 +150,10 @@
                       </a>
                   </li>
               @endcanany
-              @canany(['isControlUnit', 'isKeuangan', 'isSPV', 'isManager', 'isDirektur'])
+              @canany(['isControlUnit', 'isSPV', 'isManager', 'isDirektur', 'isKeuangan'])
                   <li class="leftbar-menu-item">
-                      <a href="javascript: void(0);" class="menu-link">
+                      <!-- 1,2,3,4, 6 -->
+                      <a href="{{ route('invoice.index', ['status' => Auth::user()->role - 1]) }}" class="menu-link">
                           <i data-feather="check-square"
                               class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
                           <span>Approval. Invoice</span>

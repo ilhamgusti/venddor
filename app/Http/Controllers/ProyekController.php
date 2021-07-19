@@ -149,7 +149,11 @@ class ProyekController extends Controller
             DB::rollBack();
             return response()->json($ex->getMessage(), 409);
         }
-        return redirect()->route('kontrak.index')->with('success','Success Data berhasil di simpan');
+        if($request->status == 5) {
+            return redirect()->route('kontrak.index')->with('success','Success Data berhasil di simpan');
+        } else {
+            return redirect()->route('proyek.index')->with('success','Success Data berhasil di simpan');
+        }
     }
 
     /**
