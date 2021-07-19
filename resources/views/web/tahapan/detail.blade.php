@@ -2,7 +2,7 @@
 
 @section('title', 'Proyek Monitoring')
 @section('headerStyle')
-    <!-- DataTables -->
+        <!-- DataTables -->
     <link href="{{ URL::asset('plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ URL::asset('plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Responsive datatable examples -->
@@ -52,7 +52,7 @@
                                     <label for="example-text-input"
                                         class="col-sm-2 col-form-label text-right">Status</label>
                                     <div class="col-sm-10">
-                                        {!! transformKontrakStatus($tahapan->status) !!}
+                                        {!! transformKontrakStatus($data->status) !!}
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -86,8 +86,8 @@
                                             Timeline</a>
                                     </div>
                                 </div>
-</div>
-</div>
+                            </div>
+                        </div>
                     </div>
                     <!--end card-body-->
                 </div>
@@ -101,33 +101,34 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="mt-0 header-title">Kontrak</h4>
-                            <div class="form-group row">
-                                <label for="timeline" class="col-sm-2 col-form-label text-right">File Kontrak</label>
-                                <div class="col-sm-10">
-                                    <a href="{{ $data->file_url }}"
-                                        class="btn btn-primary waves-effect waves-light shadow-none">Lihat File
-                                        Kontrak</a>
-                                </div>
+                        <div class="form-group row">
+                            <label for="timeline" class="col-sm-2 col-form-label text-right">File Kontrak</label>
+                            <div class="col-sm-10">
+                                <a href="{{ $data->file_url }}"
+                                    class="btn btn-primary waves-effect waves-light shadow-none">Lihat File
+                                    Kontrak</a>
                             </div>
                         </div>
                     </div>
-                    <!--end card-body-->
                 </div>
-                <!--end card-->
+                <!--end card-body-->
             </div>
-            <!--end col-->
+            <!--end card-->
         </div>
-        <!--end row-->
-        <!--end row-->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="mt-0 header-title">Tahapan</h4>
+        <!--end col-->
+    </div>
+    <!--end row-->
+    <!--end row-->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="mt-0 header-title">Tahapan</h4>
 
-                        <form action="{{ route('tahapan.update-status', ['tahapan' => $data->id]) }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
+                    <form action="{{ route('tahapan.update-status', ['tahapan' => $data->id]) }}" method="post"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
 
 
                         <table class="table table-bordered mb-0 table-centered">
@@ -168,158 +169,155 @@
                                         <td>-</td>
                                     </tr>
                                 </tbody>
-                            </table>
-
-                                <br>
-                                <div class="float-right" x-data="{status:91}">
-                                    <input type="hidden" name="status" x-bind:value="status">
-                                    <button type="submit" x-on:mouseenter="status = 91"
-                                        x-on:focus="status = 91"
-                                        class="btn btn-success waves-effect waves-light shadow-none">Save</button>
-                                    <button class="btn btn-error waves-effect waves-light shadow-none">Cancel</button>
-                                </div>
-                            @else
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <input class="form-control disabled" name="tahapan_1" type="text"
-                                                value="{{ $tahapans[0]->label }}" id="example-text-input">
-                                        </td>
-                                        <td>
-                                            <div class="custom-file"><input class="custom-file-input" type="file"
-                                                value="<?php echo $data->file_url; ?>" name="file_url_1" id="timeline"><label
-                                                class="custom-file-label shadow-none border-none">{{-- $data->file_url --}}
-                                                Choose File Kontrak</label></div>
-                                        </td>
-                                        <td>
-                                            <input class="form-control" name="keterangan_1" type="text"
-                                                value="{{-- $data->nama_proyek --}}" id="example-text-input">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input class="form-control disabled" name="tahapan_2" type="text"
-                                                value="{{ $tahapans[1]->label }}" id="example-text-input">
-                                        </td>
-                                        <td>
-                                            <div class="custom-file"><input class="custom-file-input" type="file"
-                                                value="<?php echo $data->file_url; ?>" name="file_url_2" id="timeline"><label
-                                                class="custom-file-label shadow-none border-none">{{-- $data->file_url --}}
-                                                Choose File Kontrak</label></div>
-                                        </td>
-                                        <td>
-                                            <input class="form-control" name="keterangan_2" type="text"
-                                                value="{{-- $data->nama_proyek --}}" id="example-text-input">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input class="form-control disabled" name="tahapan_3" type="text"
-                                                value="{{ $tahapans[2]->label }}" id="example-text-input">
-                                        </td>
-                                        <td>
-                                            <div class="custom-file"><input class="custom-file-input" type="file"
-                                                value="<?php echo $data->file_url; ?>" name="file_url_3" id="timeline"><label
-                                                class="custom-file-label shadow-none border-none">{{-- $data->file_url --}}
-                                                Choose File Kontrak</label></div>
-                                        </td>
-                                        <td>
-                                            <input class="form-control" name="keterangan_3" type="text"
-                                                value="{{-- $data->nama_proyek --}}" id="example-text-input">
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-
-                            <br>
-                            <br>
-                            <h4 class="mt-0 header-title">Invoice</h4>
-                            <div class="form-group row">
-                                <label for="estimasi" class="col-sm-2 col-form-label text-right">Nominal</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group">
-                                        <input id="estimasi" type="number" name="nominal"
-                                            value="" class="form-control"
-                                            placeholder="Nominal Invoice" aria-label="Estimasi...">
-                                        <span class="input-group-append">
-                                            <button disabled
-                                                class=" disabled btn btn-sm btn-secondary pointer-event-none shadow-none"
-                                                type="button">Rupiah</button>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="timeline" class="col-sm-2 col-form-label text-right">File
-                                    Invoice</label>
-                                <div class="col-sm-10">
-                                    <div class="custom-file"><input class="custom-file-input" type="file"
-                                            value="{{-- $data->file_url --}}" name="file_invoice" id="timeline"><label
-                                            class="custom-file-label shadow-none border-none">{{-- $data->file_url --}}
-                                            Choose File Timeline</label></div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Keterangan
-                                </label>
-                                <div class="col-sm-10">
-                                    <textarea class="form-control" name="keterangan_invoice" type="text"
-                                        value="" id="example-text-input"> </textarea>
-                                </div>
-                            </div>
-
-                            <br>
-                            <div class="float-right" x-data="{status:92}">
-                                <input type="hidden" name="status" x-bind:value="status">
-                                <button type="submit" x-on:mouseenter="status = 92"
-                                    x-on:focus="status = 92"
-                                    class="btn btn-success waves-effect waves-light shadow-none">Save</button>
-                                <button class="btn btn-error waves-effect waves-light shadow-none">Cancel</button>
-                            </div>
-                        @endif
-                        </form>
-                    </div>
-                    <!--end card-body-->
-                </div>
-                <!--end card-->
-            </div>
-
-
-
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="mt-0 header-title">Remarks</h4>
-                        <table class="table table-bordered mb-0 table-centered">
-                            <thead>
-                                <tr>
-                                    <th>Remarks</th>
-                                    <th>Date</th>
-                                    <th>By</th>
-                                    {{-- <th>Status</th> --}}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($proyek->remarks as $remarks)
-                                    <tr>
-                                        <td>{{ $remarks->remarks }}</td>
-                                        <td>{{ $remarks->created_at }}</td>
-                                        <td>{{ $remarks->user->name }}</td>
-                                        {{-- <td>{{ $remarks->status }}<span class="badge badge-soft-success">Approved</span> --}}
-                                        </td>
-                                    </tr>
-                                @endforeach
-
-                            </tbody>
                         </table>
-                    </div>
-                    <!--end card-body-->
+
+                        <br>
+                        <div class="float-right" x-data="{status:91}">
+                            <input type="hidden" name="status" x-bind:value="status">
+                            <button type="submit" x-on:mouseenter="status = 91" x-on:focus="status = 91"
+                                class="btn btn-success waves-effect waves-light shadow-none">Save</button>
+                            <button class="btn btn-error waves-effect waves-light shadow-none">Cancel</button>
+                        </div>
+                    @else
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input class="form-control disabled" name="tahapan_1" type="text"
+                                        value="{{ $tahapans[0]->label }}" id="example-text-input">
+                                </td>
+                                <td>
+                                    <div class="custom-file"><input class="custom-file-input" type="file"
+                                            value="<?php echo $data->file_url; ?>" name="file_url_1" id="timeline"><label
+                                            class="custom-file-label shadow-none border-none">{{-- $data->file_url --}}
+                                            Choose File Kontrak</label></div>
+                                </td>
+                                <td>
+                                    <input class="form-control" name="keterangan_1" type="text"
+                                        value="{{-- $data->nama_proyek --}}" id="example-text-input">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class="form-control disabled" name="tahapan_2" type="text"
+                                        value="{{ $tahapans[1]->label }}" id="example-text-input">
+                                </td>
+                                <td>
+                                    <div class="custom-file"><input class="custom-file-input" type="file"
+                                            value="<?php echo $data->file_url; ?>" name="file_url_2" id="timeline"><label
+                                            class="custom-file-label shadow-none border-none">{{-- $data->file_url --}}
+                                            Choose File Kontrak</label></div>
+                                </td>
+                                <td>
+                                    <input class="form-control" name="keterangan_2" type="text"
+                                        value="{{-- $data->nama_proyek --}}" id="example-text-input">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class="form-control disabled" name="tahapan_3" type="text"
+                                        value="{{ $tahapans[2]->label }}" id="example-text-input">
+                                </td>
+                                <td>
+                                    <div class="custom-file"><input class="custom-file-input" type="file"
+                                            value="<?php echo $data->file_url; ?>" name="file_url_3" id="timeline"><label
+                                            class="custom-file-label shadow-none border-none">{{-- $data->file_url --}}
+                                            Choose File Kontrak</label></div>
+                                </td>
+                                <td>
+                                    <input class="form-control" name="keterangan_3" type="text"
+                                        value="{{-- $data->nama_proyek --}}" id="example-text-input">
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
+
+
+                        <br>
+                        <br>
+                        <h4 class="mt-0 header-title">Invoice</h4>
+                        <div class="form-group row">
+                            <label for="estimasi" class="col-sm-2 col-form-label text-right">Nominal</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <input id="estimasi" type="number" name="nominal" value="" class="form-control"
+                                        placeholder="Nominal Invoice" aria-label="Estimasi...">
+                                    <span class="input-group-append">
+                                        <button disabled
+                                            class=" disabled btn btn-sm btn-secondary pointer-event-none shadow-none"
+                                            type="button">Rupiah</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="timeline" class="col-sm-2 col-form-label text-right">File
+                                Invoice</label>
+                            <div class="col-sm-10">
+                                <div class="custom-file"><input class="custom-file-input" type="file"
+                                        value="{{-- $data->file_url --}}" name="file_invoice" id="timeline"><label
+                                        class="custom-file-label shadow-none border-none">{{-- $data->file_url --}}
+                                        Choose File Timeline</label></div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-2 col-form-label text-right">Keterangan
+                            </label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" name="keterangan_invoice" type="text" value=""
+                                    id="example-text-input"> </textarea>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="float-right" x-data="{status:92}">
+                            <input type="hidden" name="status" x-bind:value="status">
+                            <button type="submit" x-on:mouseenter="status = 92" x-on:focus="status = 92"
+                                class="btn btn-success waves-effect waves-light shadow-none">Save</button>
+                            <button class="btn btn-error waves-effect waves-light shadow-none">Cancel</button>
+                        </div>
+                        @endif
+                    </form>
                 </div>
-                <!--end card-->
+                <!--end card-body-->
             </div>
-            <!--end col-->
+            <!--end card-->
         </div>
+
+
+
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="mt-0 header-title">Remarks</h4>
+                    <table class="table table-bordered mb-0 table-centered">
+                        <thead>
+                            <tr>
+                                <th>Remarks</th>
+                                <th>Date</th>
+                                <th>By</th>
+                                {{-- <th>Status</th> --}}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($proyek->remarks as $remarks)
+                                <tr>
+                                    <td>{{ $remarks->remarks }}</td>
+                                    <td>{{ $remarks->created_at }}</td>
+                                    <td>{{ $remarks->user->name }}</td>
+                                    {{-- <td>{{ $remarks->status }}<span class="badge badge-soft-success">Approved</span> --}}
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
+                <!--end card-body-->
+            </div>
+            <!--end card-->
+        </div>
+        <!--end col-->
+    </div>
     </div><!-- container -->
 @stop
 @section('footerScript')
