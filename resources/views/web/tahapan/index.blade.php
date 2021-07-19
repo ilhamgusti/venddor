@@ -43,7 +43,7 @@
                                     <tr>
                                         <td>{!! getProyekName($item->proyek_id) !!}</td>
                                         <td>{!! getProyekDate($item->proyek_id) !!}</td>
-                                        <td>{!! transformTahapanStatus($item->status) !!}</td>
+                                        <td>{!! transformKontrakStatus($item->status) !!}</td>
                                         <td><a class="btn btn-primary waves-effect waves-light shadow-none"
                                                 href={{ route('tahapan.show', ['tahapan' => $item->id]) }}>Detail</a></td>
                                     </tr>

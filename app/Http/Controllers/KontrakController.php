@@ -94,7 +94,9 @@ class KontrakController extends Controller
         DB::beginTransaction();
         try {
             $new_status = $request->status;
-            if ($new_status == 5) {
+            if ($kontrak->status == -1) {
+                $new_status = 0; // vendor lempar ke control unit
+            } else if ($new_status == 5) {
                 $new_status = 0; // vendor lempar ke control unit
             } else if ($new_status == 4) {
                 $new_status = 90; // kontrak done

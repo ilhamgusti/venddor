@@ -137,7 +137,7 @@ class ProyekController extends Controller
                 $Kontrak = new Kontrak;
                 $Kontrak->tanggal_kontrak = date('Y-m-d');
                 $Kontrak->file_url = '';
-                $Kontrak->status = 0;
+                $Kontrak->status = -1;
                 $Kontrak->created_at = date('Y-m-d');
                 $Kontrak->proyek_id = $proyek->id;
                 $Kontrak->save();
