@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tahapan;
 use App\Models\Invoice;
+use App\Models\Kontrak;
+use App\Models\Proyek;
+use App\Models\Remarks;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\URL;
 
 class InvoiceController extends Controller
 {
@@ -47,7 +54,16 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        //
+        $proyek = Proyek::where('id', $invoice->proyek_id)->first();
+        $latestRemarks = $proyek->remarks->first();
+
+        $tahapans = Tahapan::where('proyek_id', $invoice->proyek_id) -> get();
+        $kontrak = Kontrak::where('proyek_id', $invoice->proyek_id)->first();
+
+        error_log('$kontrak');
+        error_log($kontrak);
+
+        return view('web.invoice.detail', ['data'=>$invoice, 'kontrak'=>$kontrak, 'tahapans' => $tahapans,'proyek'=> $proyek, 'latestRemarks'=> $latestRemarks]);
     }
 
     /**
@@ -83,4 +99,49 @@ class InvoiceController extends Controller
     {
         //
     }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Kontrak  $kontrak
+     * @return \Illuminate\Http\Response
+     */
+    public function updateStatus(Request $request, Invoice $invoice)
+    {
+        DB::beginTransaction();
+        try {
+            $new_status = $request->status;
+            if ($new_status == 4) {
+                $new_status = 5; // direktur loncat ke keuangan
+            }
+            error_log('newStatus '.$new_status);
+
+            $invoice->status = $new_status;
+
+            if (isset($request->remarks)) {
+                error_log('remarks '.$request->remarks);
+                $proyek = Proyek::where('id', $invoice->proyek_id)->first();
+                $remarks = new Remarks;
+                $remarks->remarks = $request->remarks;
+                $remarks->status = $new_status;
+                $remarks->user_id = \Auth::user()->id;
+                $proyek->remarks()->save($remarks);
+            }
+
+            $invoice->file_bukti = '';
+            if (isset($request->file_bukti)) {
+                error_log('file_bukti '.$request->file_bukti);
+                $invoice->file_bukti = URL::asset('storage/' . $request->file_bukti->store('documents_kontrak', 'public'));
+            }
+            $invoice->save();
+
+            DB::commit();
+        } catch (Exception $ex) {
+            Log::info($ex->getMessage());
+            DB::rollBack();
+            return response()->json($ex->getMessage(), 409);
+        }
+        return redirect()->route('invoice.index')->with('success','Success Data berhasil di simpan');
+    }
+
 }
