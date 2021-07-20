@@ -198,12 +198,20 @@ function toRupiah($nominal) {
 
 function getProyekName($proyek_id) {
     $proyek = Proyek::where('id', $proyek_id)->first();
-    return $proyek->nama_proyek;
+    if (isset($proyek)) {
+        return $proyek->nama_proyek;
+    } else {
+        return '-';
+    }
 }
 
 function getProyekDate($proyek_id) {
     $proyek = Proyek::where('id', $proyek_id)->first();
-    return $proyek->tanggal_pengerjaan;
+    if (isset($proyek)) {
+        return $proyek->tanggal_pengerjaan;
+    } else {
+        return '-';
+    }
 }
 
 function transformStatusToComponent($status) {
