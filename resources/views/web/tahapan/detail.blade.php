@@ -171,12 +171,14 @@
                         </table>
 
                         <br>
+                        @if ($showOnly == false)
                         <div class="float-right" x-data="{status:91}">
                             <input type="hidden" name="status" x-bind:value="status">
                             <button type="submit" x-on:mouseenter="status = 91" x-on:focus="status = 91"
                                 class="btn btn-success waves-effect waves-light shadow-none">Save</button>
                             <button class="btn btn-error waves-effect waves-light shadow-none">Cancel</button>
                         </div>
+                        @endif
                     @else
                         <tbody>
                             <tr>
@@ -268,12 +270,14 @@
                         </div>
 
                         <br>
+                            @if ($showOnly == false)
                         <div class="float-right" x-data="{status:92}">
                             <input type="hidden" name="status" x-bind:value="status">
                             <button type="submit" x-on:mouseenter="status = 92" x-on:focus="status = 92"
                                 class="btn btn-success waves-effect waves-light shadow-none">Save</button>
                             <button class="btn btn-error waves-effect waves-light shadow-none">Cancel</button>
                         </div>
+                            @endif
                         @endif
                     </form>
                 </div>

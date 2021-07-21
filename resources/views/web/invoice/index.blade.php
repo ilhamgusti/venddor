@@ -35,7 +35,7 @@
                                 <tr>
                                     <th>Kode Invoice</th>
                                     <th>Nama Projek</th>
-                                    <th>Tanggal Pengerjaan/th>
+                                    <th>Tanggal Pengerjaan</th>
                                     <th>File Invoice</th>
                                     <th>Total Tagihan</th>
                                     <th>Status</th>

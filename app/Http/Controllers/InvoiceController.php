@@ -63,7 +63,7 @@ class InvoiceController extends Controller
         error_log('$kontrak');
         error_log($kontrak);
 
-        return view('web.invoice.detail', ['data'=>$invoice, 'kontrak'=>$kontrak, 'tahapans' => $tahapans,'proyek'=> $proyek, 'latestRemarks'=> $latestRemarks]);
+        return view('web.invoice.detail', ['data'=>$invoice, 'kontrak'=>$kontrak, 'tahapans' => $tahapans,'proyek'=> $proyek, 'latestRemarks'=> $latestRemarks, 'showOnly' => false]);
     }
 
     /**

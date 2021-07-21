@@ -8,6 +8,8 @@ use App\Models\Kontrak;
 use App\Models\Proyek;
 use App\Models\Vendor;
 use App\Models\Remarks;
+use App\Models\Invoice;
+use App\Models\Tahapan;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -83,9 +85,30 @@ class ProyekController extends Controller
      */
     public function show(Proyek $proyek)
     {
+        $proyek_id = $proyek->id;
+
+        $invoice = Invoice::where('proyek_id', $proyek_id)->first();
+        if (isset($invoice)) {
+            $proyek = Proyek::where('id', $invoice->proyek_id)->first();
+            $latestRemarks = $proyek->remarks->first();
+
+            $tahapans = Tahapan::where('proyek_id', $invoice->proyek_id) -> orderBy('id', 'ASC') -> get();
+            $kontrak = Kontrak::where('proyek_id', $invoice->proyek_id)->first();
+
+            error_log('$kontrak');
+            error_log($kontrak);
+            return view('web.invoice.detail', ['data'=>$invoice, 'kontrak'=>$kontrak, 'tahapans' => $tahapans,'proyek'=> $proyek, 'latestRemarks'=> $latestRemarks, 'showOnly' => true]);
+        }
+
+        $kontrak = Kontrak::where('proyek_id', $proyek_id)->first();
+        if (isset($kontrak)) {
+            $proyek = Proyek::where('id', $kontrak->proyek_id)->first();
+            $latestRemarks = $proyek->remarks->first();
+            return view('web.kontrak.detail', ['data'=>$kontrak, 'proyek'=> $proyek, 'latestRemarks'=> $latestRemarks, 'showOnly' => true]);
+        }
 
         $latestRemarks = $proyek->remarks->first();
-        return view('web.proyek.detail', ['data'=>$proyek, 'latestRemarks'=> $latestRemarks]);
+        return view('web.proyek.detail', ['data'=>$proyek, 'latestRemarks'=> $latestRemarks, 'showOnly' => false]);
     }
 
     /**

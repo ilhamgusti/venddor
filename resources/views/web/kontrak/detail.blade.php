@@ -123,6 +123,7 @@
                                 </div>
                             </div>
                         </div>
+                        @if ($showOnly == false)
                         <div class="float-right" x-data="{status:{{ Auth::user()->role }}}">
                             <input type="hidden" name="status" x-bind:value="status">
                             <button type="submit" x-on:mouseenter="status = {{ Auth::user()->role }}"
@@ -131,6 +132,7 @@
                             <button type="submit" x-on:mouseenter="status = 99" x-on:focus="status = 99"
                                 class="btn btn-danger waves-effect waves-light shadow-none">Reject</button>
                         </div>
+                        @endif
                     @else
                         <div class="row">
                             <div class="col-lg-12">
@@ -146,13 +148,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="float-right" x-data="{status:4}">
-                            <input type="hidden" name="status" x-bind:value="status">
-                            <button type="submit" x-on:mouseenter="status = 4"
-                                x-on:focus="status = 4"
-                                class="btn btn-success waves-effect waves-light shadow-none">Save</button>
-                            <button class="btn btn-error waves-effect waves-light shadow-none">Cancel</button>
-                        </div>
+
+                        @if ($showOnly == false)
+                            <div class="float-right" x-data="{status:4}">
+                                <input type="hidden" name="status" x-bind:value="status">
+                                <button type="submit" x-on:mouseenter="status = 4"
+                                    x-on:focus="status = 4"
+                                    class="btn btn-success waves-effect waves-light shadow-none">Save</button>
+                                <button class="btn btn-error waves-effect waves-light shadow-none">Cancel</button>
+                            </div>
+                        @endif
                     @endif
                         </form>
                         <br>

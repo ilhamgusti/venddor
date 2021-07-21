@@ -235,7 +235,7 @@
                             @csrf
                             @method('PUT')
                             @if ($data->status < 5)
-
+                            @if ($showOnly == false)
                             <h4 class="mt-0 header-title">Approval Remarks</h4>
                             <div class="form-group row">
                                     <label for="example-text-input"
@@ -257,9 +257,8 @@
                                         </div>
                                     </div>
                             </div>
-
+                            @endif
                             @elseif ($data->status == 6)
-
                             <h4 class="mt-0 header-title">Bukti Transfer</h4>
                             <div class="form-group row">
                                 <label for="timeline" class="col-sm-2 col-form-label text-right">File
@@ -270,10 +269,8 @@
                                     </a>
                                 </div>
                             </div>
-
-
                             @else
-
+                            @if ($showOnly == false)
                             <h4 class="mt-0 header-title">Bukti Transfer</h4>
                             <div class="form-group row">
                                     <label for="example-text-input"
@@ -296,8 +293,9 @@
                                         </div>
                                     </div>
                             </div>
-
                             @endif
+                            @endif
+
                             </form>
 
 

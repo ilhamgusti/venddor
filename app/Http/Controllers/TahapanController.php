@@ -61,7 +61,7 @@ class TahapanController extends Controller
         error_log($tahapans);
         error_log($proyek);
         $latestRemarks = $proyek->remarks->first();
-        return view('web.tahapan.detail', ['data'=>$tahapan, 'tahapans' => $tahapans,'proyek'=> $proyek, 'latestRemarks'=> $latestRemarks]);
+        return view('web.tahapan.detail', ['data'=>$tahapan, 'tahapans' => $tahapans,'proyek'=> $proyek, 'latestRemarks'=> $latestRemarks, 'showOnly' => false]);
     }
 
     /**
