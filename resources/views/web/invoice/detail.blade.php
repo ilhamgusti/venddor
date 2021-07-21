@@ -79,11 +79,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="timeline" class="col-sm-2 col-form-label text-right">File Timeline</label>
+                                    <label for="timeline" class="col-sm-2 col-form-label text-right">File Timesheet</label>
                                     <div class="col-sm-10">
                                         <a href="{{ $proyek->file_url }}"
-                                            class="btn btn-primary waves-effect waves-light shadow-none">Lihat File
-                                            Timeline</a>
+                                            class="btn btn-primary waves-effect waves-light shadow-none">Lihat File Timesheet</a>
                                     </div>
                                 </div>
 </div>
@@ -236,7 +235,7 @@
                             @csrf
                             @method('PUT')
                             @if ($data->status < 5)
-
+                            @if ($showOnly == false)
                             <h4 class="mt-0 header-title">Approval Remarks</h4>
                             <div class="form-group row">
                                     <label for="example-text-input"
@@ -258,9 +257,8 @@
                                         </div>
                                     </div>
                             </div>
-
+                            @endif
                             @elseif ($data->status == 6)
-
                             <h4 class="mt-0 header-title">Bukti Transfer</h4>
                             <div class="form-group row">
                                 <label for="timeline" class="col-sm-2 col-form-label text-right">File
@@ -271,10 +269,8 @@
                                     </a>
                                 </div>
                             </div>
-
-
                             @else
-
+                            @if ($showOnly == false)
                             <h4 class="mt-0 header-title">Bukti Transfer</h4>
                             <div class="form-group row">
                                     <label for="example-text-input"
@@ -297,8 +293,9 @@
                                         </div>
                                     </div>
                             </div>
-
                             @endif
+                            @endif
+
                             </form>
 
 

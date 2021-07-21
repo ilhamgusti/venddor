@@ -61,7 +61,7 @@ class TahapanController extends Controller
         error_log($tahapans);
         error_log($proyek);
         $latestRemarks = $proyek->remarks->first();
-        return view('web.tahapan.detail', ['data'=>$tahapan, 'tahapans' => $tahapans,'proyek'=> $proyek, 'latestRemarks'=> $latestRemarks]);
+        return view('web.tahapan.detail', ['data'=>$tahapan, 'tahapans' => $tahapans,'proyek'=> $proyek, 'latestRemarks'=> $latestRemarks, 'showOnly' => false]);
     }
 
     /**
@@ -118,6 +118,8 @@ class TahapanController extends Controller
             $tahapan->save();
 
             $proyek = Proyek::where('id', $tahapan->proyek_id)->first();
+
+            Tahapan::where('proyek_id', $tahapan->proyek_id)->delete();
 
             $tahapan1 = new Tahapan;
             $tahapan1->proyek_id = $tahapan->proyek_id;

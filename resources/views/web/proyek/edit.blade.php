@@ -84,13 +84,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="timeline" class="col-sm-2 col-form-label text-right">File
-                                            Timeline</label>
+                                        <label for="timeline" class="col-sm-2 col-form-label text-right">File Timesheet</label>
                                         <div class="col-sm-10">
                                             <div class="custom-file"><input class="custom-file-input" type="file"
                                                     value="{{-- $data->file_url --}}" name="file_url" id="timeline"><label
                                                     class="custom-file-label shadow-none border-none">{{-- $data->file_url --}}
-                                                    Choose File Timeline</label></div>
+                                                    Choose File</label></div>
                                         </div>
                                     </div>
                                 </div>

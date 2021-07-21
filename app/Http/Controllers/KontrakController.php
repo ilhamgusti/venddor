@@ -56,7 +56,7 @@ class KontrakController extends Controller
 
         $proyek = Proyek::where('id', $kontrak->proyek_id)->first();
         $latestRemarks = $proyek->remarks->first();
-        return view('web.kontrak.detail', ['data'=>$kontrak, 'proyek'=> $proyek, 'latestRemarks'=> $latestRemarks]);
+        return view('web.kontrak.detail', ['data'=>$kontrak, 'proyek'=> $proyek, 'latestRemarks'=> $latestRemarks, 'showOnly' => false]);
     }
 
     /**

@@ -56,7 +56,7 @@
                                         <td>{{ $item->estimasi }} Hari</td>
                                         <td><a class="btn btn-outline-light btn-xs shadow-none"
                                                 href={{ $item->file_url }}><i class="mdi mdi-file mr-2"></i>File</a></td>
-                                        <td>{!! transformStatusToComponent($item->status) !!}</td>
+                                        <td>{!! transformStatusToComponent($item->id, $item->status) !!}</td>
                                         <td><a class="btn btn-primary waves-effect waves-light shadow-none"
                                                 href={{ route('proyek.show', ['proyek' => $item->id]) }}>Detail</a></td>
                                     </tr>

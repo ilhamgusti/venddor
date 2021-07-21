@@ -55,7 +55,7 @@
                       </a>
                   </li>
               @endcanany
-              @canany(['isControlUnit', 'isVendor'])
+              @canany(['isVendor'])
                   <li class="leftbar-menu-item">
                       <a href="{{ route('kontrak.index') }}" class="menu-link">
                           <i data-feather="file-text" class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
@@ -66,7 +66,7 @@
                       </a>
                   </li>
               @endcanany
-              @canany(['isControlUnit'])
+              <!-- @canany(['isControlUnit'])
                   <li class="leftbar-menu-item">
                       <a href="{{ route('invoice.index') }}" class="menu-link">
                           <i data-feather="inbox" class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
@@ -76,7 +76,7 @@
                           </span>
                       </a>
                   </li>
-              @endcanany
+              @endcanany -->
               @canany(['isSPV'])
                   <li class="leftbar-menu-item">
                       <a href="{{ route('proyek.index', ['status' => 1]) }}" class="menu-link">

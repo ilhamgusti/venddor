@@ -79,11 +79,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="timeline" class="col-sm-2 col-form-label text-right">File Timeline</label>
+                                    <label for="timeline" class="col-sm-2 col-form-label text-right">File Timesheet</label>
                                     <div class="col-sm-10">
                                         <a href="{{ $proyek->file_url }}"
-                                            class="btn btn-primary waves-effect waves-light shadow-none">Lihat File
-                                            Timeline</a>
+                                            class="btn btn-primary waves-effect waves-light shadow-none">Lihat File Timesheet</a>
                                     </div>
                                 </div>
                             </div>
@@ -172,12 +171,14 @@
                         </table>
 
                         <br>
+                        @if ($showOnly == false)
                         <div class="float-right" x-data="{status:91}">
                             <input type="hidden" name="status" x-bind:value="status">
                             <button type="submit" x-on:mouseenter="status = 91" x-on:focus="status = 91"
                                 class="btn btn-success waves-effect waves-light shadow-none">Save</button>
                             <button class="btn btn-error waves-effect waves-light shadow-none">Cancel</button>
                         </div>
+                        @endif
                     @else
                         <tbody>
                             <tr>
@@ -256,7 +257,7 @@
                                 <div class="custom-file"><input class="custom-file-input" type="file"
                                         value="{{-- $data->file_url --}}" name="file_invoice" id="timeline"><label
                                         class="custom-file-label shadow-none border-none">{{-- $data->file_url --}}
-                                        Choose File Timeline</label></div>
+                                        Choose File</label></div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -269,12 +270,14 @@
                         </div>
 
                         <br>
+                            @if ($showOnly == false)
                         <div class="float-right" x-data="{status:92}">
                             <input type="hidden" name="status" x-bind:value="status">
                             <button type="submit" x-on:mouseenter="status = 92" x-on:focus="status = 92"
                                 class="btn btn-success waves-effect waves-light shadow-none">Save</button>
                             <button class="btn btn-error waves-effect waves-light shadow-none">Cancel</button>
                         </div>
+                            @endif
                         @endif
                     </form>
                 </div>

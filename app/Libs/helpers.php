@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Proyek;
+use App\Models\Invoice;
+use App\Models\Kontrak;
 
 function active_class($path, $active = 'active') {
   return call_user_func_array('Request::is', (array)$path) ? $active : '';
@@ -48,22 +50,6 @@ function transformProyekStatus($status) {
     }
 }
 function transformKontrakStatus($status) {
-    // switch ($status) {
-    //     case -1:
-    //         return 'Upload Kontrak';
-    //     case 0:
-    //         return 'Checking Control Unit';
-    //     case 1:
-    //         return 'Checking SPV';
-    //     case 2:
-    //         return 'Checking Manager';
-    //     case 3:
-    //         return 'Checking Direktur';
-    //     case 4:
-    //         return 'Bisa Buat Tahapan';
-    //     default:
-    //         return 'Unknown';
-    // }
     switch ($status) {
         case -1:
             return '<span class="badge badge-outline-danger">
@@ -198,15 +184,34 @@ function toRupiah($nominal) {
 
 function getProyekName($proyek_id) {
     $proyek = Proyek::where('id', $proyek_id)->first();
-    return $proyek->nama_proyek;
+    if (isset($proyek)) {
+        return $proyek->nama_proyek;
+    } else {
+        return '-';
+    }
 }
 
 function getProyekDate($proyek_id) {
     $proyek = Proyek::where('id', $proyek_id)->first();
-    return $proyek->tanggal_pengerjaan;
+    if (isset($proyek)) {
+        return $proyek->tanggal_pengerjaan;
+    } else {
+        return '-';
+    }
 }
 
-function transformStatusToComponent($status) {
+function transformStatusToComponent($proyek_id, $status) {
+    $invoice = Invoice::where('proyek_id', $proyek_id)->first();
+    if (isset($invoice)) {
+        return transformInvoiceStatus($invoice->status);
+    }
+
+    $kontrak = Kontrak::where('proyek_id', $proyek_id)->first();
+    if (isset($kontrak)) {
+        return transformKontrakStatus($kontrak->status);
+    }
+
+
     switch ($status) {
         case 1:
             return '<span class="badge badge-outline-danger">
