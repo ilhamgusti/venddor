@@ -57,7 +57,7 @@ class InvoiceController extends Controller
         $proyek = Proyek::where('id', $invoice->proyek_id)->first();
         $latestRemarks = $proyek->remarks->first();
 
-        $tahapans = Tahapan::where('proyek_id', $invoice->proyek_id) -> get();
+        $tahapans = Tahapan::where('proyek_id', $invoice->proyek_id) -> orderBy('id', 'ASC') -> get();
         $kontrak = Kontrak::where('proyek_id', $invoice->proyek_id)->first();
 
         error_log('$kontrak');

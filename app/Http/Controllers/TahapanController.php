@@ -119,6 +119,8 @@ class TahapanController extends Controller
 
             $proyek = Proyek::where('id', $tahapan->proyek_id)->first();
 
+            Tahapan::where('proyek_id', $tahapan->proyek_id)->delete();
+
             $tahapan1 = new Tahapan;
             $tahapan1->proyek_id = $tahapan->proyek_id;
             $tahapan1->label = $request->tahapan_1;
